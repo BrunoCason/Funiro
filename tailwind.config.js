@@ -5,6 +5,10 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      montserrat: ["Montserrat", "serif"],
+      poppins: ["Poppins", "serif"],
+    },
     extend: {
       colors: {
         "Primary": "#B88E2F",
