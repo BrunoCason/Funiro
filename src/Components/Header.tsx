@@ -1,0 +1,90 @@
+import { useEffect, useState } from "react";
+
+type NavItem = {
+  text: string;
+  link: string;
+};
+
+const listItems: NavItem[] = [
+  { text: "Home", link: "/" },
+  { text: "Shop", link: "/" },
+  { text: "About", link: "/" },
+  { text: "Contact", link: "/" },
+];
+
+const Header = () => {
+  const [hamburgerActive, setHamburgerActive] = useState(false);
+  const [navBarActive, setNavBarActive] = useState(false);
+
+  useEffect(() => {
+    function handleResize() {
+      const width = document.documentElement.clientWidth;
+
+      if (width < 768) {
+        setHamburgerActive(true);
+      } else {
+        setHamburgerActive(false);
+
+        if (navBarActive) setNavBarActive(false);
+      }
+    }
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [navBarActive]);
+
+  return (
+    <header className="container mx-auto h-24 flex justify-between items-center">
+      <div className="flex items-center">
+        <a href="/">
+          <img src="/src/assets/logo-header.svg" alt="" />
+        </a>
+        <p className="font-montserrat font-bold text-3xl ml-2">Furniro</p>
+      </div>
+
+      <nav
+  className={`fixed transition-transform -right-64 h-full  flex flex-col justify-center md:flex-row md:static md:w-auto md:h-auto md:bg-opacity-0 ${
+    navBarActive && "-translate-x-64"
+  }`}
+>
+  <ul className="flex flex-col md:flex-row font-poppins font-medium text-base xl:mr-24">
+    {listItems.map((item) => (
+      <li key={item.text}>
+        <a className="mr-14 ml-14" href={item.link}>
+          {item.text}
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <div className="flex justify-center">
+    <img
+      src="/src/assets/icon-user.svg"
+      alt="icon user"
+      className="pr-8"
+    />
+    <img
+      src="/src/assets/icon-carrinho.svg"
+      alt="icon carrinho de compra"
+    />
+  </div>
+</nav>
+
+
+      <div className="flex items-center">
+        {hamburgerActive && (
+          <button onClick={() => setNavBarActive(true)}>
+            <img src="/src/assets/menu-icon.svg" alt="menu" />
+          </button>
+        )}
+      </div>
+    </header>
+  );
+};
+
+export default Header;
