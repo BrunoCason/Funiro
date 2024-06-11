@@ -1,6 +1,8 @@
+import Sec1Discover from "../Components/Sec1Discover"
+
 const Home = () => {
   return (
-    <h1>teste</h1>
+    <Sec1Discover/>
   )
 }
 

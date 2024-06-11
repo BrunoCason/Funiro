@@ -39,7 +39,7 @@ const Header = () => {
   }, [navBarActive]);
 
   return (
-    <header className="container mx-auto h-24 flex justify-between items-center bg-slate-300">
+    <header className="container mx-auto h-24 flex justify-between md:justify-center items-center">
       <div className="flex items-center">
         <a href="/">
           <img src="/src/assets/logo-header.svg" alt="" />

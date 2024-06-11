@@ -28,6 +28,21 @@ export default {
         "FCF8F3": "#FCF8F3",
         "FFF3E3": "#FFF3E3",
       },
+      backgroundImage: {
+        'home-bg': "url('/src/assets/image-sec1.png')",
+      },
+      fontSize: {
+        "5.5xl": [
+          "3.25rem",
+          {
+            lineHeight: "1.2",
+          },
+        ],
+      },
+      spacing: {
+        "443px": "27.6rem",
+        "643px": "40.1rem",
+      },
     },
   },
   plugins: [],
