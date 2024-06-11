@@ -30,6 +30,7 @@ export default {
       },
       backgroundImage: {
         'home-bg': "url(https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/image-sec1.png)",
+        'banner': "url(https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/image-page-name.png)",
       },
       fontSize: {
         "5.5xl": [

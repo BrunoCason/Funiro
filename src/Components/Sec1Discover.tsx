@@ -1,6 +1,6 @@
 const Sec1Discover = () => {
   return (
-    <div className="container mx-auto bg-home-bg pt-28 pb-28 pr-10 pl-10 md:pl-28 md:pr-28 lg:p-40">
+    <div className="container mx-auto bg-home-bg bg-cover bg-no-repeat pt-28 pb-28 pr-10 pl-10 md:pl-28 md:pr-28 lg:p-40">
       <div className="bg-FFF3E3 h-96 pt-10 pr-7 pl-7 text-center lg:w-643px lg:h-443 rounded-xl lg:pt-10 lg:pr-10 lg:pl-10 xl:text-start xl:ml-443px 2xl:ml-643px">
         <p className="font-poppins font-semibold text-base text-FontColor">
           New Arrival

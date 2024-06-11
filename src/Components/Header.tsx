@@ -7,7 +7,7 @@ type NavItem = {
 
 const listItems: NavItem[] = [
   { text: "Home", link: "/" },
-  { text: "Shop", link: "/" },
+  { text: "Shop", link: "/shop" },
   { text: "About", link: "/" },
   { text: "Contact", link: "/" },
 ];
