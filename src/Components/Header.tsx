@@ -48,33 +48,32 @@ const Header = () => {
       </div>
 
       <nav
-  className={`fixed transition-transform -right-64 h-full  flex flex-col justify-center md:flex-row md:static md:w-auto md:h-auto md:bg-opacity-0 ${
-    navBarActive && "-translate-x-64"
-  }`}
->
-  <ul className="flex flex-col md:flex-row font-poppins font-medium text-base xl:mr-24">
-    {listItems.map((item) => (
-      <li key={item.text}>
-        <a className="mr-14 ml-14" href={item.link}>
-          {item.text}
-        </a>
-      </li>
-    ))}
-  </ul>
+        className={`fixed transition-transform -right-64 h-full  flex flex-col justify-center md:flex-row md:static md:w-auto md:h-auto md:bg-opacity-0 ${
+          navBarActive && "-translate-x-64"
+        }`}
+      >
+        <ul className="flex flex-col md:flex-row font-poppins font-medium text-base xl:mr-24">
+          {listItems.map((item) => (
+            <li key={item.text}>
+              <a className="mr-14 ml-14" href={item.link}>
+                {item.text}
+              </a>
+            </li>
+          ))}
+        </ul>
 
-  <div className="flex justify-center">
-    <img
-      src="/src/assets/icon-user.svg"
-      alt="icon user"
-      className="pr-8"
-    />
-    <img
-      src="/src/assets/icon-carrinho.svg"
-      alt="icon carrinho de compra"
-    />
-  </div>
-</nav>
-
+        <div className="flex justify-center">
+          <img
+            src="/src/assets/icon-user.svg"
+            alt="icon user"
+            className="pr-8"
+          />
+          <img
+            src="/src/assets/icon-carrinho.svg"
+            alt="icon carrinho de compra"
+          />
+        </div>
+      </nav>
 
       <div className="flex items-center">
         {hamburgerActive && (
