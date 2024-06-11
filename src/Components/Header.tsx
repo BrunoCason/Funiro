@@ -39,7 +39,7 @@ const Header = () => {
   }, [navBarActive]);
 
   return (
-    <header className="container mx-auto h-24 flex justify-between items-center">
+    <header className="container mx-auto h-24 flex justify-between items-center bg-slate-300">
       <div className="flex items-center">
         <a href="/">
           <img src="/src/assets/logo-header.svg" alt="" />
@@ -47,22 +47,24 @@ const Header = () => {
         <p className="font-montserrat font-bold text-3xl ml-2">Furniro</p>
       </div>
 
+      <div className={`w-full bg-FCF8F3 opacity-70 fixed top-0 bottom-0 left-0 z-40 ${navBarActive ? 'visible' : 'invisible'}`} onClick={() => setNavBarActive(false)}></div>
+
       <nav
-        className={`fixed transition-transform -right-64 h-full  flex flex-col justify-center md:flex-row md:static md:w-auto md:h-auto md:bg-opacity-0 ${
+        className={`bg-Primary fixed transition-transform text-center z-50 top-0 -right-64 h-full flex flex-col justify-center md:flex-row md:static md:w-auto md:h-auto md:bg-opacity-0 ${
           navBarActive && "-translate-x-64"
         }`}
       >
-        <ul className="flex flex-col md:flex-row font-poppins font-medium text-base xl:mr-24">
+        <ul className="flex flex-col font-poppins font-medium text-base md:flex-row xl:ml-20 2xl:ml-60">
           {listItems.map((item) => (
-            <li key={item.text}>
-              <a className="mr-14 ml-14" href={item.link}>
+            <li className="mt-5 mb-5" key={item.text}>
+              <a className="mr-14 ml-14 md:mr-7 md:ml-7 lg:mr-14 lg:ml-14" href={item.link}>
                 {item.text}
               </a>
             </li>
           ))}
         </ul>
 
-        <div className="flex justify-center">
+        <div className="flex justify-center xl:ml-36 2xl:ml-80">
           <img
             src="/src/assets/icon-user.svg"
             alt="icon user"
