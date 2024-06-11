@@ -7,9 +7,9 @@ type Images = {
 };
 
 const listItems: Images[] = [
-  { src: '/src/assets/image1-sec2.png', alt: 'Dining', text: 'Dining' },
-  { src: '/src/assets/image2-sec2.png', alt: 'Living', text: 'Living' },
-  { src: '/src/assets/image3-sec2.png', alt: 'Bedroom', text: 'Bedroom' },
+  { src: 'https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/image1-sec2.png', alt: 'Dining', text: 'Dining' },
+  { src: 'https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/image2-sec2.png', alt: 'Living', text: 'Living' },
+  { src: 'https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/image3-sec2.png', alt: 'Bedroom', text: 'Bedroom' },
 ];
 
 const Sec2Browse: React.FC = () => {

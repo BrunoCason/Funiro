@@ -29,11 +29,17 @@ export default {
         "FFF3E3": "#FFF3E3",
       },
       backgroundImage: {
-        'home-bg': "url('/src/assets/image-sec1.png')",
+        'home-bg': "url(https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/image-sec1.png)",
       },
       fontSize: {
         "5.5xl": [
           "3.25rem",
+          {
+            lineHeight: "1.2",
+          },
+        ],
+        "4.5xl": [
+          "2.5rem",
           {
             lineHeight: "1.2",
           },

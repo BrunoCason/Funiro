@@ -42,7 +42,7 @@ const Header = () => {
     <header className="container mx-auto h-24 flex justify-between md:justify-center items-center">
       <div className="flex items-center">
         <a href="/">
-          <img src="/src/assets/logo-header.svg" alt="" />
+          <img src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/logo-header.svg" alt="" />
         </a>
         <p className="font-montserrat font-bold text-3xl ml-2">Furniro</p>
       </div>
@@ -66,12 +66,12 @@ const Header = () => {
 
         <div className="flex justify-center xl:ml-36 2xl:ml-80">
           <img
-            src="/src/assets/icon-user.svg"
+            src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/icon-user.svg"
             alt="icon user"
             className="pr-8"
           />
           <img
-            src="/src/assets/icon-carrinho.svg"
+            src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/icon-carrinho.svg"
             alt="icon carrinho de compra"
           />
         </div>
@@ -80,7 +80,7 @@ const Header = () => {
       <div className="flex items-center">
         {hamburgerActive && (
           <button onClick={() => setNavBarActive(true)}>
-            <img src="/src/assets/menu-icon.svg" alt="menu" />
+            <img src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/menu-icon.svg" alt="menu" />
           </button>
         )}
       </div>

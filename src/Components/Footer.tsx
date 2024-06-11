@@ -8,16 +8,16 @@ const Footer = () => {
         </p>
         <div className="flex justify-center lg:-ml-5">
           <a href="">
-            <img src="/src/assets/icon-facebook.png" alt="icone facebook" />
+            <img src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/icon-facebook.png" alt="icone facebook" />
           </a>
           <a href="">
-            <img src="/src/assets/icon-instagram.png" alt="icone instagram" />
+            <img src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/icon-instagram.png" alt="icone instagram" />
           </a>
           <a href="">
-            <img src="/src/assets/icon-twitter.png" alt="icone twitter" />
+            <img src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/icon-twitter.png" alt="icone twitter" />
           </a>
           <a href="">
-            <img src="/src/assets/icon-linkedin.png" alt="icone linkedin" />
+            <img src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/icon-linkedin.png" alt="icone linkedin" />
           </a>
         </div>
       </div>
