@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { fetchProducts } from "../api";
 import { Product } from "../Mocks/dataProps";
 
-const Sec3Products: React.FC = () => {
+const AllProducts: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -27,12 +27,9 @@ const Sec3Products: React.FC = () => {
 
   return (
     <div className="container mx-auto">
-      <h2 className="font-poppins font-bold text-4.5xl text-FontColor text-center pb-8 pt-14">
-        Our Products
-      </h2>
-      <div className="flex justify-center">
+      <div className="flex justify-center mt-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {products.slice(0, 8).map((product, index) => (
+          {products.slice(0, 16).map((product, index) => (
             <div key={index} className="bg-LightBG w-72 relative">
               {product.new && (
                 <div className="font-poppins font-medium text-base absolute rounded-full bg-GreenAccents text-white w-12 h-12 flex items-center justify-center mt-3 mr-3 right-0">
@@ -70,13 +67,8 @@ const Sec3Products: React.FC = () => {
           ))}
         </div>
       </div>
-      <div className="flex justify-center">
-        <button className="font-poppins font-semibold text-base bg-white text-Primary border border-Primary w-64 h-12 mt-8">
-          Show More
-        </button>
-      </div>
     </div>
   );
 };
 
-export default Sec3Products;
+export default AllProducts;
