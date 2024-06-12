@@ -57,11 +57,18 @@ const AllProducts: React.FC = () => {
                 {product.product_name}
               </h2>
               <p className="font-poppins font-medium text-base text-Gray3 pl-4">
-                {product.short_description}
+                {product.message_card}
               </p>
               <p className="font-poppins font-semibold text-xl text-Gray1 pb-8 pl-4">
-                <span>Rp </span>
-                {product.price}
+                <span>
+                  Rp{" "}
+                  {product.discount > 0
+                    ? (product.price * (1 - product.discount / 100)).toFixed(2)
+                    : product.price}{" "}
+                </span>
+                <span className="font-poppins font-normal text-base text-Gray4 line-through absolute left-44">
+                  Rp {product.discount > 0 ? (product.price).toFixed(2) : ""}
+                </span>
               </p>
             </div>
           ))}
