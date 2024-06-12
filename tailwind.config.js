@@ -27,6 +27,8 @@ export default {
         "D9D9D9": "#D9D9D9",
         "FCF8F3": "#FCF8F3",
         "FFF3E3": "#FFF3E3",
+        "242424": "#242424",
+        "FAF3EA": "#FAF3EA",
       },
       backgroundImage: {
         'home-bg': "url(https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/image-sec1.png)",
