@@ -52,6 +52,8 @@ export default {
       spacing: {
         "443px": "27.6rem",
         "643px": "40.1rem",
+        "75px": "4.688rem",
+        "528px": "33rem",
       },
     },
   },
