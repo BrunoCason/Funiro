@@ -14,5 +14,6 @@ export interface Product {
     images: string[];
     discount: number;
     new: boolean;
+    message_card: string;
   }
   
