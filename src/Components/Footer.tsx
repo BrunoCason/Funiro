@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="lg:grid lg:grid-cols-4 container mx-auto gap-10">
+    <footer className="lg:grid lg:grid-cols-4 container mx-auto gap-10 border-t border-D9D9D9 pt-6">
       <div className="text-center lg:text-left mt-5 lg:ml-10">
         <p className="font-poppins font-bold text-2xl pb-4 lg:pb-14">Funiro.</p>
         <p className="font-poppins font-normal text-base text-9F9F9F pb-5 lg:pb-11">
