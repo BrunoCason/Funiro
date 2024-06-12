@@ -9,7 +9,7 @@ const listItems: NavItem[] = [
   { text: "Home", link: "/" },
   { text: "Shop", link: "/shop" },
   { text: "About", link: "/" },
-  { text: "Contact", link: "/" },
+  { text: "Contact", link: "/contact" },
 ];
 
 const Header = () => {
