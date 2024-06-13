@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://run.mocky.io/v3/d500938d-ae26-4b35-bc7b-aaf57df99116',
+  baseURL: 'https://run.mocky.io/v3/89ae0fc8-ffc2-4cf5-8f92-f1e8c7591801',
 });
 
 // Função para obter dados da API

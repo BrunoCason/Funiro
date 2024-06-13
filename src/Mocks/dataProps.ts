@@ -1,5 +1,5 @@
 export interface Product {
-  id: number;
+  id: string;
   product_name: string;
   price: number;
   customer_review: number;
@@ -16,4 +16,8 @@ export interface Product {
   discount: number;
   new: boolean;
   message_card: string;
+}
+
+export interface ApiResponse {
+  products: Product[];
 }
