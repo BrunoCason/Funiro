@@ -1,6 +1,6 @@
 const Sec5Funiro = () => {
   return ( 
-    <main className="container mx-auto text-center">
+    <main className="container mx-auto text-center mb-12">
       <p className="font-poppins font-semibold text-Gray2 text-base lg:text-xl pt-14">
         Share your setup with
       </p>
@@ -12,7 +12,6 @@ const Sec5Funiro = () => {
         src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/Images-sec5.png"
         alt=""
       />
-      <hr className="mt-10 mb-3 border-D9D9D9" />
     </main>
   );
 };
