@@ -18,6 +18,7 @@ const Carousel: React.FC<ImageCarouselProps> = ({ images }) => {
     width: "100%",
     autoWidth: true,
     pagination: false,
+    gap: 40,
     arrows: true,
     perPage: 1,
     autoplay: true,

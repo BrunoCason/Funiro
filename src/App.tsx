@@ -5,6 +5,7 @@ import Footer from "./Components/Footer";
 import Shop from "./Pages/Shop";
 import Contact from "./Pages/Contact";
 import SingleProduct from "./Pages/SingleProduct";
+import Login from "./Components/Login";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
+          <Route path="/login" element={<Login />} />
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/product/:id" element={<SingleProduct />} />
