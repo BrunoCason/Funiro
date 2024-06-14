@@ -14,6 +14,8 @@ const Banner: React.FC = () => {
         return "Contact";
       case "/shop":
         return "Shop";
+      case "/checkout":
+        return "Checkout";
       default:
         return "Error";
     }
