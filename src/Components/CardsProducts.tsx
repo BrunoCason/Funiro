@@ -73,6 +73,39 @@ const CardsProducts: React.FC<CardsProductsProps> = ({ maxCards }) => {
                       />
                     )}
                   </div>
+                  <div className="absolute inset-0 flex justify-center items-center flex-col opacity-0 duration-300 transition-colors hover:bg-Gray1 hover:opacity-90">
+                    <div className="bg-white text-Primary px-14 py-3 text-center font-poppins font-semibold text-base">
+                      Add to cart
+                    </div>
+                    <div className="flex justify-center items-center mt-2">
+                      <img
+                        src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/icon-share.png"
+                        alt="icon compare"
+                        className="mr-1"
+                      />
+                      <p className="font-poppins font-semibold text-base text-white">
+                        Share
+                      </p>
+
+                      <img
+                        src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/icon-compare.png"
+                        alt="icon compare"
+                        className="ml-5 mr-1"
+                      />
+                      <p className="font-poppins font-semibold text-base text-white mr-5">
+                        Compare
+                      </p>
+
+                      <img
+                        src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/icon-like.png"
+                        alt="icon compare"
+                        className="mr-1"
+                      />
+                      <p className="font-poppins font-semibold text-base text-white">
+                        Like
+                      </p>
+                    </div>
+                  </div>
                   <div className="pl-4">
                     <h2 className="font-poppins font-semibold text-Gray1 text-2xl pt-4 pb-2">
                       {product.product_name}
