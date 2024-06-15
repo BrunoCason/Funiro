@@ -9,7 +9,7 @@ const AllProducts: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [maxCards, setMaxCards] = useState<number>(16);
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [sortBy, setSortBy] = useState<"price_asc" | "price_desc" | "">(""); // Valor inicial como string vazia
+  const [shortBy, setShortBy] = useState<"price_inc" | "price_desc" | "">("");
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -46,17 +46,19 @@ const AllProducts: React.FC = () => {
   };
 
   const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSortBy(event.target.value as "price_asc" | "price_desc" | ""); // Aceita string vazia
+    setShortBy(event.target.value as "price_inc" | "price_desc" | "");
   };
 
-  const filteredProducts = products.filter((product) =>
-    product.product_name.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredProducts = products.filter(
+    (product) =>
+      product.product_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.message_card.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const sortedProducts = [...filteredProducts];
-  if (sortBy === "price_asc") {
+  if (shortBy === "price_inc") {
     sortedProducts.sort((a, b) => a.price - b.price);
-  } else if (sortBy === "price_desc") {
+  } else if (shortBy === "price_desc") {
     sortedProducts.sort((a, b) => b.price - a.price);
   }
 
@@ -78,22 +80,13 @@ const AllProducts: React.FC = () => {
 
   return (
     <main className="container mx-auto">
-      <div className="flex items-center justify-between bg-F9F1E7 px-3 lg:px-5 xl:px-24 py-6">
-        <div className="flex items-center">
+      <div className="md:flex items-center md:justify-between bg-F9F1E7 px-3 lg:px-5 xl:px-24 py-6">
+        <div className="flex items-center justify-center pb-5 md:pb-0">
           <img
             src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/icon-filter1.png"
             alt="icon filter 1"
           />
-          <select
-            id="sortOptions"
-            value={sortBy}
-            onChange={handleSortChange}
-            className="text-center w-36 h-14 font-poppins font-normal lg:text-xl focus:outline-none bg-transparent"
-          >
-            <option value="">Filter</option>
-            <option value="price_asc">Low to High</option>
-            <option value="price_desc">High to Low</option>
-          </select>
+          <p className="font-poppins font-normal text-xl mx-6">Filter</p>
           <img
             src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/icon-filter2.png"
             alt="icon filter 2"
@@ -103,18 +96,14 @@ const AllProducts: React.FC = () => {
             src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/icon-filter3.png"
             alt="icon filter 3"
           />
-          <p className="font-poppins font-normal text-base border-l border-9F9F9F pl-6 ml-6">
-            Showing 1 -{" "}
-            <span>
-              {maxCards} of {products.length} results
-            </span>
-          </p>
+          <div className="lg:flex font-poppins font-normal text-base border-l border-9F9F9F pl-6 ml-6">
+            <p>Showing</p>
+            <p className="mx-1">1 - {maxCards}</p>
+            <span>of {products.length} results</span>
+          </div>
         </div>
-        <div className="flex items-center">
-          <label
-            htmlFor="maxCards"
-            className="mr-4 font-poppins font-normal lg:text-xl"
-          >
+        <div className="flex items-center justify-center">
+          <label className="mr-4 font-poppins font-normal lg:text-xl">
             Show
           </label>
           <select
@@ -128,12 +117,16 @@ const AllProducts: React.FC = () => {
             <option value={64}>64</option>
             <option value={128}>128</option>
           </select>
-          <label
-            htmlFor="sortOptions"
-            className="mr-4 font-poppins font-normal lg:text-xl ml-7"
+          <select
+            id="sortOptions"
+            value={shortBy}
+            onChange={handleSortChange}
+            className="text-center focus:outline-none bg-transparent font-poppins font-normal lg:text-xl mx-3"
           >
-            Sort by
-          </label>
+            <option value="">Short By</option>
+            <option value="price_inc">Low to High</option>
+            <option value="price_desc">High to Low</option>
+          </select>
           <input
             type="text"
             id="searchInput"
@@ -233,7 +226,9 @@ const AllProducts: React.FC = () => {
               </div>
             ))
           ) : (
-            <div className="text-center">Nenhum produto encontrado.</div>
+            <div className="text-center font-poppins font-medium text-2xl pt-10">
+              Product Not Found
+            </div>
           )}
         </div>
       </div>

@@ -64,6 +64,10 @@ const FormContact = () => {
   ) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+
+    if (errors[name]) {
+      setErrors({ ...errors, [name]: "" });
+    }
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -124,7 +128,6 @@ const FormContact = () => {
           <form className="mt-10" onSubmit={handleSubmit}>
             <div className="mb-4">
               <label
-                htmlFor="name"
                 className="block font-poppins font-medium text-base text-black mb-5"
               >
                 Your name
@@ -144,7 +147,6 @@ const FormContact = () => {
             </div>
             <div className="mb-4">
               <label
-                htmlFor="email"
                 className="block font-poppins font-medium text-base text-black mb-5"
               >
                 Email address
@@ -164,7 +166,6 @@ const FormContact = () => {
             </div>
             <div className="mb-4">
               <label
-                htmlFor="subject"
                 className="block font-poppins font-medium text-base text-black mb-5"
               >
                 Subject
@@ -184,7 +185,6 @@ const FormContact = () => {
             </div>
             <div className="mb-4">
               <label
-                htmlFor="message"
                 className="block font-poppins font-medium text-base text-black mb-5"
               >
                 Message
