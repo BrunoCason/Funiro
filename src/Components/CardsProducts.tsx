@@ -16,7 +16,7 @@ const CardsProducts: React.FC<CardsProductsProps> = ({ maxCards }) => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          "https://run.mocky.io/v3/89ae0fc8-ffc2-4cf5-8f92-f1e8c7591801"
+          "https://run.mocky.io/v3/10446768-22b1-42ba-aa12-7af2c68e7feb"
         );
         const data = response.data;
         if (data && Array.isArray(data.products)) {
@@ -123,9 +123,9 @@ const CardsProducts: React.FC<CardsProductsProps> = ({ maxCards }) => {
                             ).toFixed(2)
                           : product.price}{" "}
                       </span>
-                      <span className="font-poppins font-normal text-base text-Gray4 line-through absolute left-40">
-                        Rp{" "}
-                        {product.discount > 0 ? product.price.toFixed(2) : ""}
+                      <span className="font-poppins font-normal text-bas
+                      e text-Gray4 line-through absolute left-40">
+                        {product.discount > 0 ? "Rp " + product.price.toFixed(2) : ""}
                       </span>
                     </p>
                   </div>
