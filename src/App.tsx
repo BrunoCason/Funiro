@@ -7,6 +7,7 @@ import Contact from "./Pages/Contact";
 import SingleProduct from "./Pages/SingleProduct";
 import Login from "./Components/Login";
 import Checkout from "./Pages/Checkout";
+import Error from "./Pages/Error";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/product/:id" element={<SingleProduct />} />
-          {/* <Route path="/about" element={} /> */}
+          <Route path="/*" element={<Error/>} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/checkout" element={<Checkout />} />
         </Routes>

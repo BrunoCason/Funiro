@@ -1,6 +1,6 @@
 const Error = () => {
   return (
-    <div>Error</div>
+    <main className="container mx-auto">Error</main>
   )
 }
 
