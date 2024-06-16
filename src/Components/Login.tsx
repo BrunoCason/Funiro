@@ -49,7 +49,7 @@ const Login = () => {
   return (
     <section className="bg-gray-200">
       <main className="container mx-auto flex flex-col justify-center items-center min-h-screen">
-        <div className="px-3 sm:px-32 bg-white  flex flex-col items-center rounded-lg">
+        <div className="px-3 sm:px-32 bg-white flex flex-col items-center rounded-lg shadow-xl">
           <img
             src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/logo-header.svg"
             alt="icon page"

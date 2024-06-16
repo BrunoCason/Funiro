@@ -18,7 +18,7 @@ const SingleProduct: React.FC = () => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get<ApiResponse>(
-          "https://run.mocky.io/v3/89ae0fc8-ffc2-4cf5-8f92-f1e8c7591801"
+          "https://run.mocky.io/v3/10446768-22b1-42ba-aa12-7af2c68e7feb"
         );
         const data = response.data;
 
