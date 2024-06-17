@@ -16,6 +16,8 @@ const Banner = () => {
         return "Shop";
       case "/checkout":
         return "Checkout";
+      case "/cart":
+        return "Cart";
       default:
         return "Error";
     }
