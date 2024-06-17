@@ -18,6 +18,7 @@ import Checkout from "./Pages/Checkout";
 import Error from "./Pages/Error";
 import { auth } from "./firebase";
 import { User } from "firebase/auth";
+import Cart from "./Pages/Cart";
 
 const AppLayout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
@@ -70,7 +71,8 @@ function App() {
           <Route path="/shop" element={<Shop />} />
           <Route path="/product/:id" element={<SingleProduct />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="*" element={<Error />} />
+          <Route path="/*" element={<Error />} />
+          <Route path="/cart" element={<Cart />} />
           <Route element={<PrivateRoute />}>
             <Route path="/checkout" element={<Checkout />} />
           </Route>

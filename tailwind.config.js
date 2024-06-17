@@ -67,6 +67,7 @@ export default {
         "582px": "36.37rem",
         "211px": "13.18rem",
         "453px": "28.31rem",
+        "608px": "38rem",
       },
     },
   },

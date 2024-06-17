@@ -87,13 +87,13 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
           </div>
           <div className="flex justify-center px-7 border-D9D9D9 border-t mt-6 pt-6">
             <a
-              href=""
+              href="/cart"
               className="font-poppins font-normal text-xs border border-black rounded-full px-3"
             >
               Cart
             </a>
             <a
-              href=""
+              href="/checkout"
               className="font-poppins font-normal text-xs border border-black rounded-full px-3 mx-6"
             >
               Checkout
