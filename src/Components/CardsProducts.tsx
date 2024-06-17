@@ -63,6 +63,7 @@ const CardsProducts = ({ maxCards }: CardsProductsProps) => {
         id: product.id,
         name: product.product_name,
         price: product.price,
+        image: product.images.length > 0 ? product.images : '',
       })
     );
   };

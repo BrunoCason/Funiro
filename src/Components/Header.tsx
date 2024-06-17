@@ -133,7 +133,7 @@ const Header = () => {
               onClick={() => setIsCartModalOpen(true)}
             />
             {cartItems.length > 0 && (
-              <span className="absolute top-0 right-0 rounded-full bg-red-600 text-white text-xs w-5 h-5 flex items-center justify-center">
+              <span className="absolute top-0 right-0 rounded-full bg-Primary text-white text-xs w-5 h-5 flex items-center justify-center">
                 {cartItems.length}
               </span>
             )}

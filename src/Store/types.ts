@@ -3,6 +3,7 @@ export interface CartItem {
   name: string;
   price: number;
   quantity: number;
+  image: string;
 }
 
 export interface CartState {
@@ -11,6 +12,7 @@ export interface CartState {
 
 export const ADD_ITEM = "ADD_ITEM";
 export const REMOVE_ITEM = "REMOVE_ITEM";
+export const CLEAR_CART = "CLEAR_CART";
 
 export interface AddItemAction {
   type: typeof ADD_ITEM;
@@ -22,4 +24,11 @@ export interface RemoveItemAction {
   payload: { id: number };
 }
 
-export type CartActionTypes = AddItemAction | RemoveItemAction;
+export interface ClearCartAction {
+  type: typeof CLEAR_CART;
+}
+
+export type CartActionTypes =
+  | AddItemAction
+  | RemoveItemAction
+  | ClearCartAction;
