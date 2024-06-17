@@ -1,10 +1,8 @@
-import React from 'react';
-
 interface BreadCrumbProps {
   productName: string;
 }
 
-const BreadCrumb: React.FC<BreadCrumbProps> = ({ productName }) => {
+const BreadCrumb = ({ productName }: BreadCrumbProps) => {
   return (
     <main className="container mx-auto bg-F9F1E7">
       <div className="flex pt-9 pb-9 justify-center lg:justify-start lg:pl-24 mb-8">
