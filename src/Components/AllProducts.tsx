@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Product } from "../Mocks/dataProps";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../Store/Reducers/CartReducer";
 import { Link } from "react-router-dom";
 
 const AllProducts = () => {
@@ -10,21 +12,23 @@ const AllProducts = () => {
   const [maxCards, setMaxCards] = useState<number>(16);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [shortBy, setShortBy] = useState<"price_inc" | "price_desc" | "">("");
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          "https://run.mocky.io/v3/3f99fa67-160c-4dab-8396-a3ee0ae91ed5"
+          "https://run.mocky.io/v3/1f6dc9bd-04ac-46c0-be07-e62abee83b92"
         );
         const data = response.data;
         if (data && Array.isArray(data.products)) {
           setProducts(data.products);
         } else {
-          setError("Error");
+          setError("Error fetching products");
         }
       } catch (error) {
-        setError("Error");
+        setError("Error fetching products");
       } finally {
         setLoading(false);
       }
@@ -37,6 +41,7 @@ const AllProducts = () => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setMaxCards(Number(event.target.value));
+    setCurrentPage(1);
   };
 
   const handleSearchInputChange = (
@@ -61,6 +66,33 @@ const AllProducts = () => {
   } else if (shortBy === "price_desc") {
     sortedProducts.sort((a, b) => b.price - a.price);
   }
+
+  const totalProducts = sortedProducts.length;
+  const totalPages = Math.ceil(totalProducts / maxCards);
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const startIndex = (currentPage - 1) * maxCards;
+  const displayedProducts = sortedProducts.slice(
+    startIndex,
+    startIndex + maxCards
+  );
+
+  const handleAddToCart = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    product: Product
+  ) => {
+    event.preventDefault();
+    dispatch(
+      addToCart({
+        id: product.id,
+        name: product.product_name,
+        price: product.price,
+      })
+    );
+  };
 
   if (loading) {
     return (
@@ -98,8 +130,10 @@ const AllProducts = () => {
           />
           <div className="lg:flex font-poppins font-normal text-base border-l border-9F9F9F pl-6 ml-6">
             <p>Showing</p>
-            <p className="mx-1">1 - {maxCards}</p>
-            <span>of {products.length} results</span>
+            <p className="mx-1">
+              {startIndex + 1} - {startIndex + displayedProducts.length}
+            </p>
+            <span>of {totalProducts} results</span>
           </div>
         </div>
         <div className="flex items-center justify-center">
@@ -139,10 +173,10 @@ const AllProducts = () => {
       </div>
       <div className="flex justify-center mt-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {sortedProducts.length > 0 ? (
-            sortedProducts.slice(0, maxCards).map((product) => (
+          {displayedProducts.length > 0 ? (
+            displayedProducts.map((product) => (
               <div key={product.id} className="bg-LightBG w-285px relative">
-                <Link key={product.id} to={`/product/${product.id}`}>
+                <Link to={`/product/${product.id}`}>
                   {product.new && (
                     <div className="font-poppins font-medium text-base absolute rounded-full bg-GreenAccents text-white w-12 h-12 flex items-center justify-center mt-3 mr-3 right-0">
                       New
@@ -167,9 +201,12 @@ const AllProducts = () => {
                     )}
                   </div>
                   <div className="absolute inset-0 flex justify-center items-center flex-col opacity-0 duration-300 transition-colors hover:bg-Gray1 hover:opacity-90">
-                    <div className="bg-white text-Primary px-14 py-3 text-center font-poppins font-semibold text-base">
+                    <button
+                      className="bg-white text-Primary px-14 py-3 text-center font-poppins font-semibold text-base"
+                      onClick={(event) => handleAddToCart(event, product)}
+                    >
                       Add to cart
-                    </div>
+                    </button>
                     <div className="flex justify-center items-center mt-2">
                       <img
                         src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/icon-share.png"
@@ -216,10 +253,11 @@ const AllProducts = () => {
                             ).toFixed(2)
                           : product.price}{" "}
                       </span>
-                      <span className="font-poppins font-normal text-base text-Gray4 line-through absolute left-40">
-                        Rp{" "}
-                        {product.discount > 0 ? product.price.toFixed(2) : ""}
-                      </span>
+                      {product.discount > 0 && (
+                        <span className="font-poppins font-normal text-base text-Gray4 line-through absolute left-40">
+                          Rp {product.price.toFixed(2)}
+                        </span>
+                      )}
                     </p>
                   </div>
                 </Link>
@@ -232,6 +270,28 @@ const AllProducts = () => {
           )}
         </div>
       </div>
+      {totalPages > 1 && (
+        <div className="flex justify-center mt-8">
+          {Array.from({ length: totalPages }, (_, index) => (
+            <button
+              key={index + 1}
+              onClick={() => setCurrentPage(index + 1)}
+              className={`bg-F9F1E7 h-14 w-14 font-poppins font-normal text-xl rounded-lg mx-3 ${
+                currentPage === index + 1 ? "bg-Primary text-white" : ""
+              }`}
+            >
+              {index + 1}
+            </button>
+          ))}
+          <button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+            className="bg-F9F1E7 h-14 w-24 font-poppins font-normal text-xl rounded-lg"
+          >
+            Next
+          </button>
+        </div>
+      )}
     </main>
   );
 };

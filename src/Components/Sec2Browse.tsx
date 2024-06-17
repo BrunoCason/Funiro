@@ -12,7 +12,7 @@ const listItems: Images[] = [
   { src: 'https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/image3-sec2.png', alt: 'Bedroom', text: 'Bedroom' },
 ];
 
-const Sec2Browse: React.FC = () => {
+const Sec2Browse = () => {
   return (
     <div className='container mx-auto'>
       <div className="text-center pt-14">

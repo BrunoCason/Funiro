@@ -1,4 +1,3 @@
-import React from "react";
 import "@splidejs/splide/dist/css/splide.min.css";
 import { Splide, SplideSlide, SplideProps } from "@splidejs/react-splide";
 
@@ -11,7 +10,7 @@ interface ImageCarouselProps {
   images: Image[];
 }
 
-const Carousel: React.FC<ImageCarouselProps> = ({ images }) => {
+const Carousel = ({ images }: ImageCarouselProps) => {
   const options: SplideProps["options"] = {
     rewind: false,
     type: "loop",

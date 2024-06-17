@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { auth } from "../firebase";
 import { User, onAuthStateChanged, signOut } from "firebase/auth";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../Store/store";
+import CartModal from "./CartModal";
 
 type NavItem = {
   text: string;
@@ -19,6 +22,8 @@ const Header = () => {
   const [hamburgerActive, setHamburgerActive] = useState(false);
   const [navBarActive, setNavBarActive] = useState(false);
   const [user, setUser] = useState<User | null>(null);
+  const [isCartModalOpen, setIsCartModalOpen] = useState(false);
+  const cartItems = useSelector((state: RootState) => state.cart.items);
 
   useEffect(() => {
     function handleResize() {
@@ -65,11 +70,11 @@ const Header = () => {
     } else {
       return (
         <Link to="/login">
-        <img
-          src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/icon-user.svg"
-          alt="icon user"
-          className="pr-8"
-        />
+          <img
+            src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/icon-user.svg"
+            alt="icon user"
+            className="pr-8"
+          />
         </Link>
       );
     }
@@ -120,11 +125,19 @@ const Header = () => {
         </ul>
         <div className="flex justify-center xl:ml-36 2xl:ml-80 mt-5">
           {renderUserIcon()}
-          <img
-            src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/icon-carrinho.svg"
-            alt="icon carrinho de compra"
-            className="h-7"
-          />
+          <div className="relative">
+            <img
+              src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/icon-carrinho.svg"
+              alt="icon carrinho de compra"
+              className="h-7 cursor-pointer"
+              onClick={() => setIsCartModalOpen(true)}
+            />
+            {cartItems.length > 0 && (
+              <span className="absolute top-0 right-0 rounded-full bg-red-600 text-white text-xs w-5 h-5 flex items-center justify-center">
+                {cartItems.length}
+              </span>
+            )}
+          </div>
         </div>
       </nav>
       <div className="flex items-center">
@@ -137,6 +150,7 @@ const Header = () => {
           </button>
         )}
       </div>
+      <CartModal isOpen={isCartModalOpen} onClose={() => setIsCartModalOpen(false)} />
     </header>
   );
 };
