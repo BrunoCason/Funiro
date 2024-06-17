@@ -1,14 +1,14 @@
 const CartProducts = () => {
   return (
     <main className="container mx-auto my-10">
-      <div className="flex mx-10">
-        <div className="flex justify-around items-center bg-F9F1E7 mr-9 h-14 w-3/4">
+      <div className="flex flex-col items-center lg:items-start lg:flex-row lg:mx-10">
+        <div className="flex justify-around items-center bg-F9F1E7 lg:mr-9 h-14 w-full lg:w-3/4">
           <p className="font-poppins font-medium text-base">Product</p>
           <p className="font-poppins font-medium text-base">Price</p>
           <p className="font-poppins font-medium text-base">Quantity</p>
           <p className="font-poppins font-medium text-base">Subtotal</p>
         </div>
-        <div className="bg-F9F1E7 w-96 h-96 text-center">
+        <div className="bg-F9F1E7 w-96 h-96 flex flex-col items-center">
           <p className="font-poppins font-semibold text-3xl pt-4">
             Cart Totals
           </p>
