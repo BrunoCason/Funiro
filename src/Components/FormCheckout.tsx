@@ -111,9 +111,9 @@ const FormCheckout = () => {
 
   return (
     <main className="container mx-auto">
-      <div className="flex justify-between mx-36">
-        <div className="w-608px flex flex-col">
-          <h2 className="font-poppins font-semibold text-4xl pb-9 mt-20 pl-20">
+      <div className="flex flex-col items-center lg:items-start lg:flex-row lg:justify-between lg:mx-10 2xl:mx-36">
+        <div className="sm:w-608px flex flex-col">
+          <h2 className="font-poppins font-semibold text-4xl text-center pb-9 mt-20 lg:text-start lg:ml-2 xl:ml-16 xl:pl-2 2xl:pl-3">
             Billing details
           </h2>
           <form onSubmit={handleSubmit} className="flex flex-col items-center">
@@ -132,7 +132,7 @@ const FormCheckout = () => {
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleChange}
-                  className={`border border-9F9F9F font-poppins font-normal text-base h-75px w-211px rounded-xl pl-8 focus:outline-none mt-5 ${
+                  className={`border border-9F9F9F font-poppins font-normal text-base h-75px w-36 sm:w-211px rounded-xl pl-5 sm:pl-8 focus:outline-none mt-5 ${
                     errors.firstName ? "border-red-500" : ""
                   }`}
                 />
@@ -156,7 +156,7 @@ const FormCheckout = () => {
                   name="lastName"
                   value={formData.lastName}
                   onChange={handleChange}
-                  className={`border border-9F9F9F font-poppins font-normal text-base h-75px w-211px rounded-xl pl-8 focus:outline-none mt-5 ${
+                  className={`border border-9F9F9F font-poppins font-normal text-base h-75px w-36 sm:w-211px rounded-xl pl-5 sm:pl-8 focus:outline-none mt-5 ${
                     errors.lastName ? "border-red-500" : ""
                   }`}
                 />
@@ -172,7 +172,7 @@ const FormCheckout = () => {
               <br />
               <input
                 type="text"
-                className="border border-9F9F9F font-poppins font-normal text-base h-75px w-453px rounded-xl pl-8 focus:outline-none mt-5 mb-8"
+                className="border border-9F9F9F font-poppins font-normal text-base h-75px w-80 sm:w-453px rounded-xl pl-5 sm:pl-8 focus:outline-none mt-5 mb-8"
               />
             </div>
             <div className="mb-8">
@@ -189,7 +189,7 @@ const FormCheckout = () => {
                 name="zipCode"
                 value={formData.zipCode}
                 onChange={handleChange}
-                className={`border border-9F9F9F font-poppins font-normal text-base h-75px w-453px rounded-xl pl-8 focus:outline-none mt-5 ${
+                className={`border border-9F9F9F font-poppins font-normal text-base h-75px w-80 sm:w-453px rounded-xl pl-5 sm:pl-8 focus:outline-none mt-5 ${
                   errors.zipCode ? "border-red-500" : ""
                 }`}
               />
@@ -211,7 +211,7 @@ const FormCheckout = () => {
                 name="countryRegion"
                 value={formData.countryRegion}
                 onChange={handleChange}
-                className={`border border-9F9F9F font-poppins font-normal text-base h-75px w-453px rounded-xl pl-8 focus:outline-none mt-5 ${
+                className={`border border-9F9F9F font-poppins font-normal text-base h-75px w-80 sm:w-453px rounded-xl pl-5 sm:pl-8 focus:outline-none mt-5 ${
                   errors.zipCode ? "border-red-500" : ""
                 }`}
               />
@@ -235,7 +235,7 @@ const FormCheckout = () => {
                 name="streetAddress"
                 value={formData.streetAddress}
                 onChange={handleChange}
-                className={`border border-9F9F9F font-poppins font-normal text-base h-75px w-453px rounded-xl pl-8 focus:outline-none mt-5 ${
+                className={`border border-9F9F9F font-poppins font-normal text-base h-75px w-80 sm:w-453px rounded-xl pl-5 sm:pl-8 focus:outline-none mt-5 ${
                   errors.zipCode ? "border-red-500" : ""
                 }`}
               />
@@ -259,7 +259,7 @@ const FormCheckout = () => {
                 name="townCity"
                 value={formData.townCity}
                 onChange={handleChange}
-                className={`border border-9F9F9F font-poppins font-normal text-base h-75px w-453px rounded-xl pl-8 focus:outline-none mt-5 ${
+                className={`border border-9F9F9F font-poppins font-normal text-base h-75px w-80 sm:w-453px rounded-xl pl-5 sm:pl-8 focus:outline-none mt-5 ${
                   errors.zipCode ? "border-red-500" : ""
                 }`}
               />
@@ -281,7 +281,7 @@ const FormCheckout = () => {
                 name="province"
                 value={formData.province}
                 onChange={handleChange}
-                className={`border border-9F9F9F font-poppins font-normal text-base h-75px w-453px rounded-xl pl-8 focus:outline-none mt-5 ${
+                className={`border border-9F9F9F font-poppins font-normal text-base h-75px w-80 sm:w-453px rounded-xl pl-5 sm:pl-8 focus:outline-none mt-5 ${
                   errors.zipCode ? "border-red-500" : ""
                 }`}
               />
@@ -303,7 +303,7 @@ const FormCheckout = () => {
                 name="addOnAddress"
                 value={formData.addOnAddress}
                 onChange={handleChange}
-                className={`border border-9F9F9F font-poppins font-normal text-base h-75px w-453px rounded-xl pl-8 focus:outline-none mt-5 ${
+                className={`border border-9F9F9F font-poppins font-normal text-base h-75px w-80 sm:w-453px rounded-xl pl-5 sm:pl-8 focus:outline-none mt-5 ${
                   errors.zipCode ? "border-red-500" : ""
                 }`}
               />
@@ -327,7 +327,7 @@ const FormCheckout = () => {
                 name="emailAddress"
                 value={formData.emailAddress}
                 onChange={handleChange}
-                className={`border border-9F9F9F font-poppins font-normal text-base h-75px w-453px rounded-xl pl-8 focus:outline-none mt-5 ${
+                className={`border border-9F9F9F font-poppins font-normal text-base h-75px w-80 sm:w-453px rounded-xl pl-5 sm:pl-8 focus:outline-none mt-5 ${
                   errors.zipCode ? "border-red-500" : ""
                 }`}
               />
@@ -345,13 +345,13 @@ const FormCheckout = () => {
                 placeholder="Additional information"
                 value={formData.additionalInformation}
                 onChange={handleChange}
-                className="border border-9F9F9F h-75px w-453px rounded-xl pl-8 focus:outline-none mt-5 font-poppins text-base"
+                className="border border-9F9F9F h-75px w-80 sm:w-453px rounded-xl pl-5 sm:pl-8 focus:outline-none mt-5 font-poppins text-base"
               />
             </div>
             <br />
           </form>
         </div>
-        <div className="mt-20 w-608px">
+        <div className="mt-20 sm:w-608px">
           <div className="border-b border-D9D9D9 pb-8 pt-14 mx-9 flex justify-between">
             <div>
               <p className="font-poppins font-medium text-2xl">Product</p>
@@ -378,7 +378,7 @@ const FormCheckout = () => {
               className="mt-6"
             />
             <span
-              className={`font-poppins font-medium text-base ${
+              className={`font-poppins font-medium text-base ml-3 ${
                 selectedOption === "bankTransfer"
                   ? "font-normal text-black"
                   : "text-9F9F9F"
@@ -402,7 +402,7 @@ const FormCheckout = () => {
               className="my-3"
             />
             <span
-              className={`font-poppins font-medium text-base ${
+              className={`font-poppins font-medium text-base ml-3 ${
                 selectedOption === "bankTransfer2"
                   ? "font-normal text-black"
                   : "text-9F9F9F"
@@ -425,7 +425,7 @@ const FormCheckout = () => {
               onClick={() => setSelectedOption("cashOnDelivery")}
             />
             <span
-              className={`font-poppins font-medium text-base ${
+              className={`font-poppins font-medium text-base ml-3 ${
                 selectedOption === "cashOnDelivery"
                   ? "font-normal text-black"
                   : "text-9F9F9F"
