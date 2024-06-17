@@ -3,7 +3,7 @@ import { Product } from "../Mocks/dataProps";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const AllProducts: React.FC = () => {
+const AllProducts = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -15,7 +15,7 @@ const AllProducts: React.FC = () => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          "https://run.mocky.io/v3/10446768-22b1-42ba-aa12-7af2c68e7feb"
+          "https://run.mocky.io/v3/3f99fa67-160c-4dab-8396-a3ee0ae91ed5"
         );
         const data = response.data;
         if (data && Array.isArray(data.products)) {

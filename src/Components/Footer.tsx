@@ -77,8 +77,8 @@ const Footer = () => {
           </button>
         </div>
       </div>
-      <hr className="border-t border-D9D9D9 mr-10 ml-10 mt-5 col-span-4 lg:mr-10 lg:ml-10" />
-      <p className="font-poppins font-normal text-base text-center mt-5 mb-5 lg:text-nowrap lg:ml-10 2xl:-ml-8">
+      <hr className="border-t border-D9D9D9 mr-10 ml-10 col-span-4 lg:mr-10 lg:ml-10" />
+      <p className="font-poppins font-normal text-base text-center mb-8 lg:text-nowrap lg:ml-10 2xl:-ml-8">
         2023 furino. All rights reverved
       </p>
     </footer>
