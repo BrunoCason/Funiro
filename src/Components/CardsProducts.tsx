@@ -35,11 +35,11 @@ const CardsProducts: React.FC<CardsProductsProps> = ({ maxCards }) => {
   }, []);
 
   if (loading) {
-    return <div className="text-center">Carregando...</div>;
+    return <div className="text-center font-poppins font-medium text-2xl pt-10">Loading Products</div>;
   }
 
   if (error) {
-    return <div className="text-center text-red-500">{error}</div>;
+    return <div className="text-center text-red-500 font-poppins font-normal text-2xl pt-10">{error}</div>;
   }
 
   return (
