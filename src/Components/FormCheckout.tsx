@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { z } from "zod";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import { RootState } from "../Store/store";
+import { CartItem } from "../Store/types";
 
 const createUserFormSchema = z.object({
   firstName: z
@@ -39,6 +42,17 @@ const FormCheckout = () => {
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const cartItems = useSelector((state: RootState) => state.cart.items);
+
+  const calculateSubtotal = (item: CartItem) => {
+    return item.quantity * item.price;
+  };
+
+  const calculateTotal = () => {
+    return cartItems.reduce((total, item) => {
+      return total + item.quantity * item.price;
+    }, 0);
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -82,8 +96,7 @@ const FormCheckout = () => {
     }
   }, [formData.zipCode]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleValidate = () => {
     const validationResult = createUserFormSchema.safeParse(formData);
 
     if (validationResult.success) {
@@ -116,7 +129,7 @@ const FormCheckout = () => {
           <h2 className="font-poppins font-semibold text-4xl text-center pb-9 mt-20 lg:text-start lg:ml-2 xl:ml-16 xl:pl-2 2xl:pl-3">
             Billing details
           </h2>
-          <form onSubmit={handleSubmit} className="flex flex-col items-center">
+          <form className="flex flex-col items-center">
             <fieldset className="flex mb-9">
               <div className="mr-8">
                 <label
@@ -348,25 +361,51 @@ const FormCheckout = () => {
                 className="border border-9F9F9F h-75px w-80 sm:w-453px rounded-xl pl-5 sm:pl-8 focus:outline-none mt-5 font-poppins text-base"
               />
             </div>
-            <br />
           </form>
         </div>
-        <div className="mt-20 sm:w-608px">
+        <div className="mt-20 w-96 xl:w-608px">
           <div className="border-b border-D9D9D9 pb-8 pt-14 mx-9 flex justify-between">
             <div>
-              <p className="font-poppins font-medium text-2xl">Product</p>
-              <p className="font-poppins font-normal text-base text-9F9F9F mt-4">
-                Produto
-                <span className="font-poppins font-medium text-xs"> X </span>
-              </p>
-              <p className="font-poppins font-normal text-base my-6">Subtotal</p>
-              <p className="font-poppins font-normal text-base">Total</p>
-            </div>
-            <div>
-              <p className="font-poppins font-medium text-2xl">Subtotal</p>
-              <p className="font-poppins font-light text-base mt-4">Rs. </p>
-              <p className="font-poppins font-light text-base my-6">Rs. </p>
-              <p className="font-poppins font-bold text-2xl text-Primary">Rs.</p>
+              <div className="flex justify-between w-80 xl:w-528px mb-3">
+                <p className="font-poppins font-medium text-2xl">Product</p>
+                <p className="font-poppins font-medium text-2xl">Subtotal</p>
+              </div>
+              {cartItems.length > 0 ? (
+                cartItems.map((item: CartItem) => (
+                  <div
+                    key={item.id}
+                    className="flex items-center justify-between mb-2"
+                  >
+                    <div className="flex">
+                      <span className="font-poppins font-normal text-base text-9F9F9F w-36">
+                        {item.name}
+                      </span>
+                      <div>
+                        <span className="font-poppins font-medium text-xs w-10">
+                          X {item.quantity}
+                        </span>
+                      </div>
+                    </div>
+                    <span className="font-poppins font-light text-base justify-end">
+                      Rs. {calculateSubtotal(item)}
+                    </span>
+                  </div>
+                ))
+              ) : (
+                <p className="font-poppins font-semibold">The cart is empty</p>
+              )}
+              <div className="flex items-center justify-between my-4">
+                <p className="font-poppins font-normal text-base">Subtotal</p>
+                <p className="font-poppins font-light text-base">
+                  Rs. {calculateTotal()}
+                </p>
+              </div>
+              <div className="flex items-center justify-between">
+                <p className="font-poppins font-normal text-base">Total</p>
+                <p className="font-poppins font-bold text-2xl text-Primary">
+                  Rs. {calculateTotal()}
+                </p>
+              </div>
             </div>
           </div>
           <div className="mx-9">
@@ -448,12 +487,13 @@ const FormCheckout = () => {
             <span className="font-semibold text-base">privacy policy.</span>
           </p>
           <div className="flex justify-center">
-            <a
-              href="/checkout"
-              className="font-poppins font-normal text-xl px-24 py-4 border border-black rounded-2xl"
+            <button
+              type="submit"
+              onClick={handleValidate}
+              className="border-black border py-4 px-24 rounded-2xl font-poppins font-normal text-xl"
             >
               Place order
-            </a>
+            </button>
           </div>
         </div>
       </div>
