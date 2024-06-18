@@ -58,12 +58,19 @@ const CardsProducts = ({ maxCards }: CardsProductsProps) => {
     product: Product
   ) => {
     event.preventDefault();
+  
+    let image = '';
+    if (product.images.length > 0) {
+      image = product.images[0];
+    }
+  
     dispatch(
       addToCart({
-        id: product.id,
+        id: parseInt(product.id),
         name: product.product_name,
         price: product.price,
-        image: product.images.length > 0 ? product.images : '',
+        image: image,
+        quantity: 1,
       })
     );
   };

@@ -1,38 +1,29 @@
 import { AnyAction } from 'redux';
+import { CartState, ADD_ITEM, REMOVE_ITEM, CLEAR_CART, CartItem } from '../types';
 
-const initialState = {
-  items: [] as { id: string; name: string; price: number; quantity: number; image: string; }[],
-};
+export const addToCart = (item: CartItem) => ({
+  type: ADD_ITEM,
+  payload: item,
+});
 
-const ADD_TO_CART = 'ADD_TO_CART';
-const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
-const CLEAR_CART = 'CLEAR_CART';
+export const clearCart = () => ({
+  type: CLEAR_CART,
+});
 
-export const addToCart = (product: { id: string; name: string; price: number; image: string; }) => {
-  return {
-    type: ADD_TO_CART,
-    payload: product,
-  };
-};
+export const removeFromCart = (id: number) => ({
+  type: REMOVE_ITEM,
+  payload: { id },
+});
 
-export const removeFromCart = (id: string) => {
-  return {
-    type: REMOVE_FROM_CART,
-    payload: { id },
-  };
-};
-
-export const clearCart = () => {
-  return {
-    type: CLEAR_CART,
-  };
+const initialState: CartState = {
+  items: [],
 };
 
 const cartReducer = (state = initialState, action: AnyAction) => {
   let existingItemIndex;
 
   switch (action.type) {
-    case ADD_TO_CART:
+    case ADD_ITEM:
       existingItemIndex = state.items.findIndex(
         item => item.id === action.payload.id
       );
@@ -53,7 +44,7 @@ const cartReducer = (state = initialState, action: AnyAction) => {
           { ...action.payload, quantity: 1 },
         ],
       };
-    case REMOVE_FROM_CART:
+    case REMOVE_ITEM:
       return {
         ...state,
         items: state.items.filter(item => item.id !== action.payload.id),
