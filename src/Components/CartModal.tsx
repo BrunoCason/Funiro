@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../Store/store";
 import { clearCart, removeFromCart } from "../Store/Reducers/CartReducer";
+import { CartItem } from "../Store/types";
 
 type CartModalProps = {
   isOpen: boolean;
@@ -19,7 +20,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
     }, 0);
   };
 
-  const handleRemoveItem = (id: string) => {
+  const handleRemoveItem = (id: number) => {
     dispatch(removeFromCart(id));
   };
 
@@ -45,16 +46,16 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
             />
           </div>
           {cartItems.length > 0 ? (
-            cartItems.map((item) => (
+            cartItems.map((item: CartItem) => (
               <div key={item.id} className="mb-2 flex ml-7">
                 {item.image && (
                   <img
-                    src={item.image[0]}
+                    src={item.image}
                     alt={item.name}
                     className="h-24 w-24 rounded-lg mr-8 mb-2"
                   />
                 )}
-                <div className="pt-5  w-48">
+                <div className="pt-5 w-48">
                   <span className="font-poppins font-normal text-base">
                     {item.name}
                   </span>
@@ -82,7 +83,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
               Subtotal
             </p>
             <span className="font-poppins font-semibold text-base text-Primary">
-              Rs. {subtotal}
+              ${subtotal.toFixed(2)}
             </span>
           </div>
           <div className="flex justify-center px-7 border-D9D9D9 border-t mt-6 pt-6">
@@ -110,7 +111,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
             className="mt-4 p-2 bg-red-500 text-white rounded"
             onClick={onClose}
           >
-            Fechar
+            Close
           </button>
         </div>
       </div>
