@@ -28,8 +28,6 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
     dispatch(clearCart());
   };
 
-  const subtotal = calculateSubtotal();
-
   return (
     <main className="fixed top-0 right-0 bg-gray-100 shadow-lg">
       <div className="container mx-auto">
@@ -83,7 +81,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
               Subtotal
             </p>
             <span className="font-poppins font-semibold text-base text-Primary">
-              ${subtotal.toFixed(2)}
+              ${calculateSubtotal()}
             </span>
           </div>
           <div className="flex justify-center px-7 border-D9D9D9 border-t mt-6 pt-6">
