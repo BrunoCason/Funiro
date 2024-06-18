@@ -4,6 +4,8 @@ import axios from "axios";
 import BreadCrumb from "../Components/BreadCrumb";
 import { Product, ApiResponse } from "../Mocks/dataProps";
 import CardsProducts from "../Components/CardsProducts";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../Store/Reducers/CartReducer";
 
 const SingleProduct = () => {
   const { id } = useParams<{ id: string }>();
@@ -13,6 +15,7 @@ const SingleProduct = () => {
   const [selectedColor, setSelectedColor] = useState<string>("");
   const [selectedSize, setSelectedSize] = useState<string>("");
   const [quantity, setQuantity] = useState<number>(1);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -61,20 +64,55 @@ const SingleProduct = () => {
   };
 
   if (loading) {
-    return <div className="text-center font-poppins font-medium text-2xl pt-10">Loading...</div>;
+    return (
+      <div className="text-center font-poppins font-medium text-2xl pt-10">
+        Loading...
+      </div>
+    );
   }
 
   if (error) {
-    return <div className="text-center font-poppins font-medium text-2xl pt-10 text-red-500">{error}</div>;
+    return (
+      <div className="text-center font-poppins font-medium text-2xl pt-10 text-red-500">
+        {error}
+      </div>
+    );
   }
 
   if (!product) {
-    return <div className="text-center font-poppins font-medium text-2xl pt-10">Product not found.</div>;
+    return (
+      <div className="text-center font-poppins font-medium text-2xl pt-10">
+        Product not found.
+      </div>
+    );
   }
+
+  const handleAddToCart = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    product: Product
+  ) => {
+    event.preventDefault();
+
+    let image = "";
+    if (product.images.length > 0) {
+      image = product.images[0];
+    }
+
+    dispatch(
+      addToCart({
+        id: parseInt(product.id),
+        name: product.product_name,
+        price: product.price,
+        image: image,
+        quantity: 1,
+      })
+    );
+    setQuantity(1);
+  };
 
   return (
     <main className="container mx-auto">
-      <BreadCrumb productName={product.product_name}/>
+      <BreadCrumb productName={product.product_name} />
       <div className=" lg:flex justify-center">
         <div className="mr-8 flex justify-center lg:block">
           {product.images.slice(1).map((image, index) => (
@@ -115,7 +153,7 @@ const SingleProduct = () => {
           {product.sizes.map((size, index) => (
             <label
               key={index}
-              className={`inline-block h-8 w-8 rounded-md cursor-pointer text-center p-1 font-poppins font-normal text-sm mr-4 ${
+              className={`inline-flex items-center justify-center h-8 w-8 rounded-md cursor-pointer mr-4 ${
                 selectedSize === size ? "bg-Primary" : "bg-F9F1E7"
               }`}
               onClick={() => handleSizeChange(size)}
@@ -126,7 +164,13 @@ const SingleProduct = () => {
                 className="hidden"
                 checked={selectedSize === size}
               />
-              <span className="text-black">{size}</span>
+              <span
+                className={`font-poppins font-normal text-sm ${
+                  selectedSize === size ? "text-white" : "text-black"
+                }`}
+              >
+                {size}
+              </span>
             </label>
           ))}
           <p className="font-poppins font-normal text-sm text-9F9F9F pt-4 pb-3 -ml-3 lg:ml-0">
@@ -162,7 +206,10 @@ const SingleProduct = () => {
             <button onClick={handleIncrease} className="">
               +
             </button>
-            <button className="font-poppins font-normal text-xl text-black w-215px h-16 text-center border border-black rounded-2xl ml-12">
+            <button
+              className="font-poppins font-normal text-xl text-black w-215px h-16 text-center border border-black rounded-2xl ml-12"
+              onClick={(event) => handleAddToCart(event, product)}
+            >
               Add To Cart
             </button>
           </div>
