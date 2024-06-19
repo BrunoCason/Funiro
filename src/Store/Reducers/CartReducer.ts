@@ -30,7 +30,7 @@ const cartReducer = (state = initialState, action: AnyAction) => {
 
       if (existingItemIndex >= 0) {
         const updatedItems = [...state.items];
-        updatedItems[existingItemIndex].quantity += 1;
+        updatedItems[existingItemIndex].quantity += action.payload.quantity;
         return {
           ...state,
           items: updatedItems,
@@ -41,7 +41,7 @@ const cartReducer = (state = initialState, action: AnyAction) => {
         ...state,
         items: [
           ...state.items,
-          { ...action.payload, quantity: 1 },
+          { ...action.payload },
         ],
       };
     case REMOVE_ITEM:
