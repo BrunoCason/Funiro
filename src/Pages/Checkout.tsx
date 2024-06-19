@@ -4,7 +4,7 @@ import ServiceIcons from "../Components/ServiceIcons"
 
 const Checkout = () => {
   return (
-    <main>
+    <main className="pt-24">
         <Banner/>
         <FormCheckout/>
         <ServiceIcons/>

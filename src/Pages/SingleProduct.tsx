@@ -111,7 +111,7 @@ const SingleProduct = () => {
   };
 
   return (
-    <main className="container mx-auto">
+    <main className="container mx-auto pt-24">
       <BreadCrumb productName={product.product_name} />
       <div className=" lg:flex justify-center">
         <div className="mr-8 flex justify-center lg:block">
