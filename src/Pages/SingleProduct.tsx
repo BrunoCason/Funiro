@@ -16,6 +16,8 @@ const SingleProduct = () => {
   const [selectedSize, setSelectedSize] = useState<string>("");
   const [quantity, setQuantity] = useState<number>(1);
   const dispatch = useDispatch();
+  const [addToCartEnabled, setAddToCartEnabled] = useState<boolean>(false);
+  const [cartMessage, setCartMessage] = useState<string>("");
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -45,12 +47,28 @@ const SingleProduct = () => {
     fetchProduct();
   }, [id]);
 
+  useEffect(() => {
+    if (product !== null) {
+      document.title = product.product_name;
+    }
+  }, [product]);
+
+  const checkAddToCartEnabled = (color: string, size: string) => {
+    if (color !== "" && size !== "") {
+      setAddToCartEnabled(true);
+    } else {
+      setAddToCartEnabled(false);
+    }
+  };
+
   const handleColorChange = (color: string) => {
     setSelectedColor(color);
+    checkAddToCartEnabled(color, selectedSize);
   };
 
   const handleSizeChange = (size: string) => {
     setSelectedSize(size);
+    checkAddToCartEnabled(selectedColor, size);
   };
 
   const handleIncrease = () => {
@@ -108,6 +126,11 @@ const SingleProduct = () => {
       })
     );
     setQuantity(1);
+
+    setCartMessage(`${product.product_name} added to cart!`);
+    setTimeout(() => {
+      setCartMessage("");
+    }, 3000);
   };
 
   return (
@@ -207,11 +230,19 @@ const SingleProduct = () => {
               +
             </button>
             <button
-              className="font-poppins font-normal text-xl text-black w-215px h-16 text-center border border-black rounded-2xl ml-12"
-              onClick={(event) => handleAddToCart(event, product)}
+              className={`font-poppins font-normal text-xl text-black w-215px h-16 text-center border border-black rounded-2xl ml-12 ${
+                addToCartEnabled ? "" : "cursor-not-allowed"
+              }`}
+              onClick={(event) => addToCartEnabled && handleAddToCart(event, product)}
+              disabled={!addToCartEnabled}
             >
               Add To Cart
             </button>
+            {cartMessage && (
+              <p className="text-green-500 font-poppins font-medium text-base mt-3">
+                {cartMessage}
+              </p>
+            )}
           </div>
           <div className="border-t border-D9D9D9 mt-14 pt-10">
             <p className="font-poppins font-normal text-base text-9F9F9F ">
@@ -269,17 +300,17 @@ const SingleProduct = () => {
         {product.full_description}
       </p>
       {product.images.length > 0 && (
-        <div className="grid grid-cols-1 justify-items-center items-center lg:grid-cols-2">
+        <div className="grid grid-cols-1 justify-items-center items-center lg:grid-cols-2 mx-4">
           <img
             src={product.images[0]}
             alt={`${product.product_name} - Image 1`}
-            className="h-301px w-285px mb-7 lg:mb-0"
+            className="h-301px w-96 mb-7 lg:mb-0 rounded-xl"
           />
           {product.images.length > 1 && (
             <img
               src={product.images[1]}
               alt={`${product.product_name} - Image 2`}
-              className="h-301px w-285px"
+              className="h-301px w-96 rounded-xl"
             />
           )}
         </div>
