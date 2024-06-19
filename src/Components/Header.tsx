@@ -90,7 +90,7 @@ const Header = () => {
   };
 
   return (
-    <header className="container mx-auto h-24 flex justify-between md:justify-center items-center">
+    <header className="w-full px-2 sm:px-10 mx-auto h-24 flex justify-between md:justify-center items-center fixed bg-white">
       <div className="flex items-center">
         <a href="/">
           <img
@@ -101,13 +101,13 @@ const Header = () => {
         <p className="font-montserrat font-bold text-3xl ml-2">Furniro</p>
       </div>
       <div
-        className={`w-full bg-FCF8F3 opacity-70 fixed top-0 bottom-0 left-0 z-40 ${
+        className={`w-full bg-black opacity-70 fixed top-0 bottom-0 left-0 z-40 ${
           navBarActive ? "visible" : "invisible"
         }`}
         onClick={() => setNavBarActive(false)}
       ></div>
       <nav
-        className={`bg-Primary fixed transition-transform text-center z-50 top-0 -right-64 h-full flex flex-col justify-center md:flex-row md:static md:w-auto md:h-auto md:bg-opacity-0 ${
+        className={`bg-white fixed transition-transform text-center z-50 top-0 -right-64 h-full flex flex-col justify-center md:flex-row md:static md:w-auto md:h-auto md:bg-opacity-0 ${
           navBarActive && "-translate-x-64"
         }`}
       >
