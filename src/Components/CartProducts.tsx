@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../Store/store";
 import { removeFromCart } from "../Store/Reducers/CartReducer";
 import { CartItem } from "../Store/types";
+import { Link } from "react-router-dom";
 
 const CartProducts = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
@@ -43,7 +44,7 @@ const CartProducts = () => {
                     />
                   )}
                   <span className="font-poppins font-normal text-base text-9F9F9F w-64">
-                    {item.name}
+                    <Link to={`/product/${item.id}`}>{item.name}</Link>
                   </span>
                   <span className="font-poppins font-normal text-base text-9F9F9F w-60">
                     Rs. {item.price}
