@@ -322,7 +322,7 @@ const SingleProduct = () => {
       <CardsProducts maxCards={4} />
       <div className="flex justify-center">
         <a href="/shop">
-          <button className="font-poppins font-semibold text-base bg-white text-Primary border border-Primary w-64 h-12 mt-8 mb-20">
+          <button className="font-poppins font-semibold text-base bg-white text-Primary border border-Primary w-64 h-12 mt-8 mb-20 hover:bg-Primary hover:text-white duration-300">
             Show More
           </button>
         </a>

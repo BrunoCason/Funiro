@@ -207,7 +207,7 @@ const FormContact = () => {
               {successMessage}
             </span>
             <div className="flex justify-center lg:justify-start mb-5">
-              <button className="bg-Primary w-60 h-14 rounded-md font-poppins font-normal text-white">
+              <button className="bg-Primary w-60 h-14 rounded-md font-poppins font-normal text-white hover:bg-Primary2 duration-300">
                 Submit
               </button>
             </div>

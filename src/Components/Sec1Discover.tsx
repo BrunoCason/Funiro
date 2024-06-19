@@ -12,7 +12,7 @@ const Sec1Discover = () => {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut <br />{" "}
           elit tellus, luctus nec ullamcorper mattis.
         </p>
-        <button className="font-poppins font-bold text-white text-base bg-Primary mt-5 w-32 h-16 sm:mt-10 md:mt-10 lg:w-56 lg:h-20 lg:mt-7">
+        <button className="font-poppins font-bold text-white text-base bg-Primary mt-5 w-32 h-16 sm:mt-10 md:mt-10 lg:w-56 lg:h-20 lg:mt-7 hover:bg-Primary2 duration-300">
           BUY Now
         </button>
       </div>
