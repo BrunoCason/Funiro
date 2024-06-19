@@ -104,7 +104,7 @@ const SingleProduct = () => {
         name: product.product_name,
         price: product.price,
         image: image,
-        quantity: 1,
+        quantity: quantity,
       })
     );
     setQuantity(1);
