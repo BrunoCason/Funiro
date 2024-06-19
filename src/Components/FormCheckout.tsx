@@ -4,6 +4,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { RootState } from "../Store/store";
 import { CartItem } from "../Store/types";
+import { Link } from "react-router-dom";
 
 const createUserFormSchema = z.object({
   firstName: z
@@ -378,7 +379,7 @@ const FormCheckout = () => {
                   >
                     <div className="flex">
                       <span className="font-poppins font-normal text-base text-9F9F9F w-36">
-                        {item.name}
+                        <Link to={`/product/${item.id}`}>{item.name}</Link>
                       </span>
                       <div>
                         <span className="font-poppins font-medium text-xs w-10">

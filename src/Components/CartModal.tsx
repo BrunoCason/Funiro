@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../Store/store";
 import { clearCart, removeFromCart } from "../Store/Reducers/CartReducer";
 import { CartItem } from "../Store/types";
+import { Link } from "react-router-dom";
 
 type CartModalProps = {
   isOpen: boolean;
@@ -58,7 +59,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                 )}
                 <div className="pt-5 w-44">
                   <span className="font-poppins font-normal text-base">
-                    {item.name}
+                    <Link to={`/product/${item.id}`}>{item.name}</Link>
                   </span>
                   <br />
                   <span className="font-poppins font-light text-base">
