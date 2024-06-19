@@ -29,17 +29,20 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
   };
 
   return (
-    <main className="fixed top-0 right-0 bg-gray-100 shadow-lg">
-      <div className="container mx-auto">
-        <div className="bg-white w-96">
-          <div className="flex border-D9D9D9 border-b ml-7 mb-10">
-            <h2 className="font-poppinems-ces font-semibold text-2xl py-6 mr-40">
+    <main className="fixed top-0 container mx-auto flex justify-end z-50">
+      <div
+        className="fixed inset-0 bg-black opacity-50 "
+        onClick={onClose}
+      ></div>
+        <div className="bg-white w-96 z-50">
+          <div className="flex mx-6 mb-10">
+            <h2 className="font-poppinems-ces font-semibold text-2xl py-6 w-64 mr-14 border-D9D9D9 border-b">
               Shopping Cart
             </h2>
             <img
               src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/icon-clean-cart.png"
               alt="icon clean cart"
-              className="w-4 h-5 mt-8 cursor-pointer"
+              className="w-4 h-5 mt-8 ml-1 cursor-pointer"
               onClick={handleClearCart}
             />
           </div>
@@ -53,7 +56,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                     className="h-24 w-24 rounded-lg mr-8 mb-2"
                   />
                 )}
-                <div className="pt-5 w-48">
+                <div className="pt-5 w-44">
                   <span className="font-poppins font-normal text-base">
                     {item.name}
                   </span>
@@ -68,51 +71,43 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                 <img
                   src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/icon-close.png"
                   alt="icon close"
-                  className="w-5 h-5 mt-9 cursor-pointer"
+                  className="w-5 h-5 mt-9 ml-2 cursor-pointer"
                   onClick={() => handleRemoveItem(item.id)}
                 />
               </div>
             ))
           ) : (
-            <p className="font-poppins font-semibold">The cart is empty</p>
+            <p className="font-poppins font-semibold text-center">The cart is empty</p>
           )}
-          <div className="flex mt-10">
+          <div className="flex mt-20">
             <p className="font-poppins font-normal text-base ml-7 mr-20">
               Subtotal
             </p>
             <span className="font-poppins font-semibold text-base text-Primary">
-              ${calculateSubtotal()}
+              Rs. {calculateSubtotal()}
             </span>
           </div>
-          <div className="flex justify-center px-7 border-D9D9D9 border-t mt-6 pt-6">
+          <div className="flex justify-center border-D9D9D9 border-t mt-6 pt-6 mb-6">
             <a
               href="/cart"
-              className="font-poppins font-normal text-xs border border-black rounded-full px-3"
+              className="font-poppins font-normal text-xs border border-black rounded-full py-1 px-5"
             >
               Cart
             </a>
             <a
               href="/checkout"
-              className="font-poppins font-normal text-xs border border-black rounded-full px-3 mx-6"
+              className="font-poppins font-normal text-xs border border-black rounded-full py-1 px-5 mx-6"
             >
               Checkout
             </a>
             <a
               href="/*"
-              className="font-poppins font-normal text-xs border border-black rounded-full px-3"
+              className="font-poppins font-normal text-xs border border-black rounded-full py-1 px-5"
             >
               Comparison
             </a>
           </div>
-
-          <button
-            className="mt-4 p-2 bg-red-500 text-white rounded"
-            onClick={onClose}
-          >
-            Close
-          </button>
         </div>
-      </div>
     </main>
   );
 };

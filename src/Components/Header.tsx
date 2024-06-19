@@ -90,7 +90,7 @@ const Header = () => {
   };
 
   return (
-    <header className="w-full px-2 sm:px-10 mx-auto h-24 flex justify-between md:justify-center items-center fixed bg-white">
+    <header className="w-full px-2 sm:px-10 mx-auto h-24 flex justify-between md:justify-center items-center fixed bg-white z-10">
       <div className="flex items-center">
         <a href="/">
           <img
@@ -133,7 +133,7 @@ const Header = () => {
               onClick={() => setIsCartModalOpen(true)}
             />
             {cartItems.length > 0 && (
-              <span className="absolute top-0 right-0 rounded-full bg-Primary text-white text-xs w-5 h-5 flex items-center justify-center">
+              <span className="absolute top-0 right-0 rounded-full bg-Primary font-poppins text-white text-xs w-5 h-5 flex items-center justify-center">
                 {cartItems.length}
               </span>
             )}
