@@ -4,7 +4,7 @@ import ServiceIcons from "../Components/ServiceIcons"
 
 const Cart = () => {
   return (
-    <main>
+    <main className="pt-24">
         <Banner/>
         <CartProducts/>
         <ServiceIcons/>

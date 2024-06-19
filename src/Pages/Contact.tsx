@@ -4,7 +4,7 @@ import ServiceIcons from "../Components/ServiceIcons"
 
 const Contact = () => {
   return (
-    <main>
+    <main className="pt-24">
         <Banner/>
         <FormContact/>
         <ServiceIcons/>

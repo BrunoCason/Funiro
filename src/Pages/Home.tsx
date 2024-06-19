@@ -11,7 +11,7 @@ const Home = () => {
   })
 
   return (
-    <main>
+    <main className="pt-24">
       <Sec1Discover />
       <Sec2Browse />
       <Sec3Products/>
