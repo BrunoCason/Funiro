@@ -1,5 +1,6 @@
 import "@splidejs/splide/dist/css/splide.min.css";
 import { Splide, SplideSlide, SplideProps } from "@splidejs/react-splide";
+import { useEffect } from "react";
 
 interface Image {
   src: string;
@@ -32,6 +33,13 @@ const Carousel = ({ images }: ImageCarouselProps) => {
       },
     },
   };
+
+  useEffect(() => {
+    const leftArrow = document.querySelector('.splide__arrow--prev');
+    if (leftArrow) {
+      leftArrow.remove();
+    }
+  }, []);
 
   return (
     <Splide options={options}>
