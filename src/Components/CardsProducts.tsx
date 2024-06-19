@@ -81,7 +81,7 @@ const CardsProducts = ({ maxCards }: CardsProductsProps) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {products.length > 0 ? (
             products.slice(0, maxCards).map((product) => (
-              <div key={product.id} className="bg-LightBG w-285px relative">
+              <div key={product.id} className="bg-LightBG w-285px relative hover:scale-105 duration-300">
                 <Link key={product.id} to={`/product/${product.id}`}>
                   <div>
                     {product.new && (

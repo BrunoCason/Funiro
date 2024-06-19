@@ -59,24 +59,28 @@ const Footer = () => {
             <img
               src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/icon-facebook.png"
               alt="icone facebook"
+              className="hover:scale-110 duration-300"
             />
           </a>
           <a href="">
             <img
               src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/icon-instagram.png"
               alt="icone instagram"
+              className="hover:scale-110 duration-300"
             />
           </a>
           <a href="">
             <img
               src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/icon-twitter.png"
               alt="icone twitter"
+              className="hover:scale-110 duration-300"
             />
           </a>
           <a href="">
             <img
               src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/icon-linkedin.png"
               alt="icone linkedin"
+              className="hover:scale-110 duration-300"
             />
           </a>
         </div>

@@ -115,7 +115,7 @@ const Header = () => {
           {listItems.map((item) => (
             <li className="mt-5 mb-5" key={item.text}>
               <a
-                className="mr-14 ml-14 md:mr-7 md:ml-7 lg:mr-14 lg:ml-14"
+                className="mr-14 ml-14 md:mr-7 md:ml-7 lg:mr-14 lg:ml-14 hover:text-Primary duration-300"
                 href={item.link}
               >
                 {item.text}

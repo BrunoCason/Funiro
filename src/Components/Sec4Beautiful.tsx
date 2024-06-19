@@ -30,7 +30,7 @@ const Sec4Beautiful = () => {
           </p>
           <a
             href="/"
-            className="bg-Primary font-poppins font-semibold text-white py-3 px-9 inline-block"
+            className="bg-Primary font-poppins font-semibold text-white py-3 px-9 inline-block hover:bg-Primary2 duration-300"
           >
             Explore More
           </a>

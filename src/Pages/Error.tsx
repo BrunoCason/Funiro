@@ -19,7 +19,7 @@ const Error = () => {
             </p>
             <a
               href="/"
-              className="bg-Primary font-poppins font-semibold text-white py-3 px-9"
+              className="bg-Primary font-poppins font-semibold text-white py-3 px-9 hover:bg-Primary2 duration-300"
             >
               Return to Home
             </a>

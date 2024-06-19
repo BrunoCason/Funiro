@@ -9,7 +9,7 @@ const Sec3Products = () => {
       <CardsProducts maxCards={8} />
       <div className="flex justify-center">
         <a href="/shop">
-          <button className="font-poppins font-semibold text-base bg-white text-Primary border border-Primary w-64 h-12 mt-8">
+          <button className="font-poppins font-semibold text-base bg-white text-Primary border border-Primary w-64 h-12 mt-8 hover:bg-Primary hover:text-white duration-300">
             Show More
           </button>
         </a>

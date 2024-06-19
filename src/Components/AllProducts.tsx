@@ -183,7 +183,7 @@ const AllProducts = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {displayedProducts.length > 0 ? (
             displayedProducts.map((product) => (
-              <div key={product.id} className="bg-LightBG w-285px relative">
+              <div key={product.id} className="bg-LightBG w-285px relative hover:scale-105 duration-300">
                 <Link to={`/product/${product.id}`}>
                   {product.new && (
                     <div className="font-poppins font-medium text-base absolute rounded-full bg-GreenAccents text-white w-12 h-12 flex items-center justify-center mt-3 mr-3 right-0">
