@@ -111,6 +111,10 @@ const FormCheckout = () => {
     }
   };
 
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat(undefined, { style: 'decimal' }).format(price);
+  };
+
   return (
     <main className="container mx-auto">
       <div className="flex flex-col items-center lg:items-start lg:flex-row lg:justify-between lg:mx-10 2xl:mx-36">
@@ -376,7 +380,7 @@ const FormCheckout = () => {
                       </div>
                     </div>
                     <span className="font-poppins font-light text-base justify-end">
-                      Rs. {calculateSubtotal(item)}
+                      Rs. {formatPrice(calculateSubtotal(item))}
                     </span>
                   </div>
                 ))
@@ -386,13 +390,13 @@ const FormCheckout = () => {
               <div className="flex items-center justify-between my-4">
                 <p className="font-poppins font-normal text-base">Subtotal</p>
                 <p className="font-poppins font-light text-base">
-                  Rs. {calculateTotal()}
+                  Rs. {formatPrice(calculateTotal())}
                 </p>
               </div>
               <div className="flex items-center justify-between">
                 <p className="font-poppins font-normal text-base">Total</p>
                 <p className="font-poppins font-bold text-2xl text-Primary">
-                  Rs. {calculateTotal()}
+                  Rs. {formatPrice(calculateTotal())}
                 </p>
               </div>
             </div>

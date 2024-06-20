@@ -4,6 +4,10 @@ import { useCart } from "../Hooks/useCart";
 const CartProducts = () => {
   const { cartItems, calculateTotal, calculateSubtotal , handleRemoveItem } = useCart();
 
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat(undefined, { style: 'decimal' }).format(price);
+  };
+
   return (
     <main className="container mx-auto my-10">
       <div className="flex flex-col items-center lg:items-start lg:flex-row lg:mx-10">
@@ -29,13 +33,13 @@ const CartProducts = () => {
                     <Link to={`/product/${item.id}`}>{item.name}</Link>
                   </span>
                   <span className="font-poppins font-normal text-base text-9F9F9F w-60">
-                    Rs. {item.price}
+                    Rs. {formatPrice(item.price)}
                   </span>
                   <span className="font-poppins font-bold text-base w-64">
                     {item.quantity}
                   </span>
                   <span className="font-poppins font-normal text-base w-32">
-                    {calculateSubtotal(item)}
+                    {formatPrice(calculateSubtotal(item))}
                   </span>
                   <img
                     src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/icon-delete.png"
@@ -46,7 +50,7 @@ const CartProducts = () => {
                 </div>
               ))
             ) : (
-              <p className="font-poppins font-semibold">The cart is empty</p>
+              <p className="font-poppins font-semibold flex justify-center py-10">The cart is empty</p>
             )}
           </div>
         </div>
@@ -57,13 +61,13 @@ const CartProducts = () => {
           <p className="font-poppins font-medium text-base mt-16 mb-8">
             Subtotal{" "}
             <span className="font-poppins font-normal text-base text-9F9F9F ml-14">
-              Rs.{calculateTotal()}
+              Rs. {formatPrice(calculateTotal())}
             </span>
           </p>
           <p className="font-poppins font-medium text-base mb-12">
             Total{" "}
             <span className="font-poppins font-medium text-xl text-Primary ml-16">
-              Rs.{calculateTotal()}
+              Rs. {formatPrice(calculateTotal())}
             </span>
           </p>
           <a

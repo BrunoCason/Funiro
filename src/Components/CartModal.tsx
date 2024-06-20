@@ -11,6 +11,10 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
 
   if (!isOpen) return null;
 
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat(undefined, { style: 'decimal' }).format(price);
+  };
+
   return (
     <main className="fixed top-0 container mx-auto flex justify-end z-50">
       <div
@@ -47,7 +51,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                   <span className="font-poppins font-light text-base">
                     {item.quantity} x{" "}
                     <span className="font-poppins font-medium text-xs text-Primary">
-                      ${item.price}
+                      Rs. {formatPrice(item.price)}
                     </span>
                   </span>
                 </div>
@@ -67,7 +71,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
               Subtotal
             </p>
             <span className="font-poppins font-semibold text-base text-Primary">
-              Rs. {calculateTotal()}
+              Rs. {formatPrice(calculateTotal())}
             </span>
           </div>
           <div className="flex justify-center border-D9D9D9 border-t mt-6 pt-6 mb-6">
