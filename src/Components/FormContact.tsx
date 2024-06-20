@@ -127,86 +127,78 @@ const FormContact = () => {
         <div className="flex justify-center">
           <form className="mt-10" onSubmit={handleSubmit}>
             <div className="mb-4">
-              <label
-                className="block font-poppins font-medium text-base text-black mb-5"
-              >
+              <label className="block font-poppins font-medium text-base text-black mb-5">
                 Your name
               </label>
-              {errors.name && <p className="text-red-500">{errors.name}</p>}
               <input
                 type="text"
                 id="name"
                 name="name"
                 placeholder="Abc"
-                className={`border border-9F9F9F h-75px w-80 sm:w-528px rounded-xl placeholder:text-9F9F9F pl-8 mb-9 focus:outline-none ${
+                className={`border border-9F9F9F h-75px w-80 sm:w-528px rounded-xl placeholder:text-9F9F9F pl-8 focus:outline-none ${
                   errors.name ? "border-red-500" : "border-9F9F9F"
                 }`}
                 value={formData.name}
                 onChange={handleChange}
               />
+              {errors.name && <p className="text-red-500">{errors.name}</p>}
             </div>
-            <div className="mb-4">
-              <label
-                className="block font-poppins font-medium text-base text-black mb-5"
-              >
+            <div className="mb-4  mt-9">
+              <label className="block font-poppins font-medium text-base text-black mb-5">
                 Email address
               </label>
-              {errors.email && <p className="text-red-500">{errors.email}</p>}
               <input
                 type="email"
                 id="email"
                 name="email"
                 placeholder="Abc@def.com"
-                className={`border border-9F9F9F h-75px w-80 sm:w-528px rounded-xl placeholder:text-9F9F9F pl-8 mb-9 focus:outline-none ${
+                className={`border border-9F9F9F h-75px w-80 sm:w-528px rounded-xl placeholder:text-9F9F9F pl-8 focus:outline-none ${
                   errors.email ? "border-red-500" : "border-9F9F9F"
                 }`}
                 value={formData.email}
                 onChange={handleChange}
               />
+              {errors.email && <p className="text-red-500">{errors.email}</p>}
             </div>
-            <div className="mb-4">
-              <label
-                className="block font-poppins font-medium text-base text-black mb-5"
-              >
+            <div className="mb-4 mt-9">
+              <label className="block font-poppins font-medium text-base text-black mb-5">
                 Subject
               </label>
-              {errors.subject && (
-                <p className="text-red-500">{errors.subject}</p>
-              )}
               <input
                 type="text"
                 id="subject"
                 name="subject"
                 placeholder="This is an optional"
-                className="border border-9F9F9F h-75px w-80 sm:w-528px rounded-xl placeholder:text-9F9F9F pl-8 mb-9 focus:outline-none"
+                className="border border-9F9F9F h-75px w-80 sm:w-528px rounded-xl placeholder:text-9F9F9F pl-8 focus:outline-none"
                 value={formData.subject}
                 onChange={handleChange}
               />
+              {errors.subject && (
+                <p className="text-red-500">{errors.subject}</p>
+              )}
             </div>
-            <div className="mb-4">
-              <label
-                className="block font-poppins font-medium text-base text-black mb-5"
-              >
+            <div className="mb-4 mt-9">
+              <label className="block font-poppins font-medium text-base text-black mb-5">
                 Message
               </label>
-              {errors.message && (
-                <p className="text-red-500">{errors.message}</p>
-              )}
               <textarea
                 id="message"
                 name="message"
                 placeholder="Hi! I'd like to ask about"
-                className={`border border-9F9F9F h-32 w-80 sm:w-528px rounded-xl placeholder:text-9F9F9F pt-5 pl-8 mb-9 focus:outline-none ${
+                className={`border border-9F9F9F h-32 w-80 sm:w-528px rounded-xl placeholder:text-9F9F9F pt-5 pl-8 focus:outline-none ${
                   errors.name ? "border-red-500" : "border-9F9F9F"
                 }`}
                 value={formData.message}
                 onChange={handleChange}
               />
+              {errors.message && (
+                <p className="text-red-500">{errors.message}</p>
+              )}
             </div>
             <span className="font-poppins font-medium text-green-600">
               {successMessage}
             </span>
-            <div className="flex justify-center lg:justify-start mb-5">
+            <div className="flex justify-center lg:justify-start mb-5 mt-10">
               <button className="bg-Primary w-60 h-14 rounded-md font-poppins font-normal text-white hover:bg-Primary2 duration-300">
                 Submit
               </button>

@@ -1,41 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { Product } from "../Mocks/dataProps";
-import axios from "axios";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../Store/Reducers/CartReducer";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import ButtonAddToCart from "./ButtonAddToCart";
+import { useFetchProducts } from "../Hooks/useFetchProducts";
 
 const AllProducts = () => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
   const [maxCards, setMaxCards] = useState<number>(16);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [shortBy, setShortBy] = useState<"price_inc" | "price_desc" | "">("");
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get(
-          "https://run.mocky.io/v3/1f6dc9bd-04ac-46c0-be07-e62abee83b92"
-        );
-        const data = response.data;
-        if (data && Array.isArray(data.products)) {
-          setProducts(data.products);
-        } else {
-          setError("Error fetching products");
-        }
-      } catch (error) {
-        setError("Error fetching products");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
-  }, []);
+  const { products, loading, error } = useFetchProducts(
+    "https://run.mocky.io/v3/1f6dc9bd-04ac-46c0-be07-e62abee83b92"
+  );
 
   const handleMaxCardsChange = (
     event: React.ChangeEvent<HTMLSelectElement>
@@ -79,28 +54,6 @@ const AllProducts = () => {
     startIndex,
     startIndex + maxCards
   );
-
-  const handleAddToCart = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    product: Product
-  ) => {
-    event.preventDefault();
-  
-    let image = '';
-    if (product.images.length > 0) {
-      image = product.images[0];
-    }
-  
-    dispatch(
-      addToCart({
-        id: parseInt(product.id),
-        name: product.product_name,
-        price: product.price,
-        image: image,
-        quantity: 1,
-      })
-    );
-  };
 
   if (loading) {
     return (
@@ -209,12 +162,7 @@ const AllProducts = () => {
                     )}
                   </div>
                   <div className="absolute inset-0 flex justify-center items-center flex-col opacity-0 duration-300 transition-colors hover:bg-Gray1 hover:opacity-90">
-                    <button
-                      className="bg-white text-Primary px-14 py-3 text-center font-poppins font-semibold text-base"
-                      onClick={(event) => handleAddToCart(event, product)}
-                    >
-                      Add to cart
-                    </button>
+                    <ButtonAddToCart product={product} />
                     <div className="flex justify-center items-center mt-2">
                       <img
                         src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/icon-share.png"

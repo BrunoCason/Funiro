@@ -1,8 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../Store/store";
-import { clearCart, removeFromCart } from "../Store/Reducers/CartReducer";
-import { CartItem } from "../Store/types";
 import { Link } from "react-router-dom";
+import { useCart } from "../Hooks/useCart";
 
 type CartModalProps = {
   isOpen: boolean;
@@ -10,24 +7,9 @@ type CartModalProps = {
 };
 
 const CartModal = ({ isOpen, onClose }: CartModalProps) => {
-  const cartItems = useSelector((state: RootState) => state.cart.items);
-  const dispatch = useDispatch();
+  const { cartItems, calculateTotal, handleRemoveItem, handleClearCart } = useCart();
 
   if (!isOpen) return null;
-
-  const calculateSubtotal = () => {
-    return cartItems.reduce((total, item) => {
-      return total + item.quantity * item.price;
-    }, 0);
-  };
-
-  const handleRemoveItem = (id: number) => {
-    dispatch(removeFromCart(id));
-  };
-
-  const handleClearCart = () => {
-    dispatch(clearCart());
-  };
 
   return (
     <main className="fixed top-0 container mx-auto flex justify-end z-50">
@@ -48,7 +30,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
             />
           </div>
           {cartItems.length > 0 ? (
-            cartItems.map((item: CartItem) => (
+            cartItems.map((item) => (
               <div key={item.id} className="mb-2 flex ml-7">
                 {item.image && (
                   <img
@@ -85,7 +67,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
               Subtotal
             </p>
             <span className="font-poppins font-semibold text-base text-Primary">
-              Rs. {calculateSubtotal()}
+              Rs. {calculateTotal()}
             </span>
           </div>
           <div className="flex justify-center border-D9D9D9 border-t mt-6 pt-6 mb-6">

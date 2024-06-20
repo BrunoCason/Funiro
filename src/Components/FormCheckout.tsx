@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import { z } from "zod";
 import axios from "axios";
-import { useSelector } from "react-redux";
-import { RootState } from "../Store/store";
-import { CartItem } from "../Store/types";
 import { Link } from "react-router-dom";
+import { useCart } from "../Hooks/useCart";
 
 const createUserFormSchema = z.object({
   firstName: z
@@ -43,17 +41,7 @@ const FormCheckout = () => {
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
-  const cartItems = useSelector((state: RootState) => state.cart.items);
-
-  const calculateSubtotal = (item: CartItem) => {
-    return item.quantity * item.price;
-  };
-
-  const calculateTotal = () => {
-    return cartItems.reduce((total, item) => {
-      return total + item.quantity * item.price;
-    }, 0);
-  };
+  const { cartItems, calculateTotal, calculateSubtotal } = useCart();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -372,7 +360,7 @@ const FormCheckout = () => {
                 <p className="font-poppins font-medium text-2xl">Subtotal</p>
               </div>
               {cartItems.length > 0 ? (
-                cartItems.map((item: CartItem) => (
+                cartItems.map((item) => (
                   <div
                     key={item.id}
                     className="flex items-center justify-between mb-2"

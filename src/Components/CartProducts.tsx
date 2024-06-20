@@ -1,26 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../Store/store";
-import { removeFromCart } from "../Store/Reducers/CartReducer";
-import { CartItem } from "../Store/types";
 import { Link } from "react-router-dom";
+import { useCart } from "../Hooks/useCart";
 
 const CartProducts = () => {
-  const cartItems = useSelector((state: RootState) => state.cart.items);
-  const dispatch = useDispatch();
-
-  const handleRemoveItem = (id: number) => {
-    dispatch(removeFromCart(id));
-  };
-
-  const calculateSubtotal = (item: CartItem) => {
-    return item.quantity * item.price;
-  };
-
-  const calculateTotal = () => {
-    return cartItems.reduce((total, item) => {
-      return total + item.quantity * item.price;
-    }, 0);
-  };
+  const { cartItems, calculateTotal, calculateSubtotal , handleRemoveItem } = useCart();
 
   return (
     <main className="container mx-auto my-10">
@@ -34,7 +16,7 @@ const CartProducts = () => {
           </div>
           <div>
             {cartItems.length > 0 ? (
-              cartItems.map((item: CartItem) => (
+              cartItems.map((item) => (
                 <div key={item.id} className="flex items-center mb-5">
                   {item.image && (
                     <img
