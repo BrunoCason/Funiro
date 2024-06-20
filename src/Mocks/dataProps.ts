@@ -3,7 +3,7 @@ export interface Product {
   product_name: string;
   price: number;
   customer_review: number;
-  recommendation_stars: number;
+  recommendation_stars: string[];
   short_description: string;
   sizes: string[];
   colors: string[];

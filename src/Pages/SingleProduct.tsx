@@ -23,7 +23,7 @@ const SingleProduct = () => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get<ApiResponse>(
-          "https://run.mocky.io/v3/1f6dc9bd-04ac-46c0-be07-e62abee83b92"
+          "https://run.mocky.io/v3/013c64c0-9291-48dd-8454-5d354e4da6bf"
         );
         const data = response.data;
 
@@ -79,6 +79,10 @@ const SingleProduct = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
     }
+  };
+
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat(undefined, { style: 'decimal' }).format(price);
   };
 
   if (loading) {
@@ -159,10 +163,17 @@ const SingleProduct = () => {
             {product.product_name}
           </h2>
           <p className="font-poppins font-medium text-2xl text-9F9F9F pb-4">
-            Rs. <span>{product.price.toFixed(2)}</span>
+            Rs. <span>{formatPrice(product.price)}</span>
           </p>
           <div className="flex justify-center lg:justify-normal">
-            <p>{product.recommendation_stars}</p>
+            {product.recommendation_stars.slice(0).map((image, index) => (
+              <img
+                key={index + 1}
+                src={image}
+                alt={`${product.recommendation_stars} - Image ${index + 2}`}
+                className=" mb-4 mr-2 lg:mr-0"
+              />
+            ))}
             <p className="font-poppins font-normal text-sm text-9F9F9F border-l border-9F9F9F ml-5 pl-5">
               {product.customer_review} <span>Customer Review</span>
             </p>
@@ -186,6 +197,7 @@ const SingleProduct = () => {
                 name="size"
                 className="hidden"
                 checked={selectedSize === size}
+                onChange={() => handleSizeChange(size)}
               />
               <span
                 className={`font-poppins font-normal text-sm ${
@@ -212,7 +224,12 @@ const SingleProduct = () => {
               }}
               onClick={() => handleColorChange(color)}
             >
-              <input type="radio" name="color" className="hidden" />
+              <input
+                type="radio"
+                name="color"
+                className="hidden"
+                onChange={() => handleColorChange(color)}
+              />
             </label>
           ))}
           <br />
@@ -233,7 +250,9 @@ const SingleProduct = () => {
               className={`font-poppins font-normal text-xl text-black w-215px h-16 text-center border border-black rounded-2xl ml-12 ${
                 addToCartEnabled ? "" : "cursor-not-allowed"
               }`}
-              onClick={(event) => addToCartEnabled && handleAddToCart(event, product)}
+              onClick={(event) =>
+                addToCartEnabled && handleAddToCart(event, product)
+              }
               disabled={!addToCartEnabled}
             >
               Add To Cart

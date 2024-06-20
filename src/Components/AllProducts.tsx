@@ -9,7 +9,7 @@ const AllProducts = () => {
   const [shortBy, setShortBy] = useState<"price_inc" | "price_desc" | "">("");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const { products, loading, error } = useFetchProducts(
-    "https://run.mocky.io/v3/1f6dc9bd-04ac-46c0-be07-e62abee83b92"
+    "https://run.mocky.io/v3/013c64c0-9291-48dd-8454-5d354e4da6bf"
   );
 
   const handleMaxCardsChange = (
@@ -45,8 +45,21 @@ const AllProducts = () => {
   const totalProducts = sortedProducts.length;
   const totalPages = Math.ceil(totalProducts / maxCards);
 
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat(undefined, { style: "decimal" }).format(price);
+  };
+
   const handleNextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
+    setCurrentPage((prevPage) => {
+      const newPage = Math.min(prevPage + 1, totalPages);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return newPage;
+    });
+  };
+
+  const changePage = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const startIndex = (currentPage - 1) * maxCards;
@@ -70,6 +83,85 @@ const AllProducts = () => {
       </div>
     );
   }
+
+  const renderPagination = () => {
+    const pagination = [];
+
+    if (totalPages <= 5) {
+      for (let i = 1; i <= totalPages; i++) {
+        pagination.push(
+          <button
+            key={i}
+            onClick={() => changePage(i)}
+            className={`bg-F9F1E7 h-14 w-14 font-poppins font-normal text-xl rounded-lg mx-3 ${
+              currentPage === i ? "bg-Primary text-white" : ""
+            }`}
+          >
+            {i}
+          </button>
+        );
+      }
+    } else {
+      pagination.push(
+        <button
+          key={1}
+          onClick={() => changePage(1)}
+          className={`bg-F9F1E7 h-14 w-14 font-poppins font-normal text-xl rounded-lg mx-3 ${
+            currentPage === 1 ? "bg-Primary text-white" : ""
+          }`}
+        >
+          1
+        </button>
+      );
+
+      if (currentPage > 3) {
+        pagination.push(
+          <span className="bg-F9F1E7 h-14 w-14 font-poppins font-normal text-xl rounded-lg mx-3 text-center pt-2">
+            ...
+          </span>
+        );
+      }
+
+      const startPage = Math.max(2, currentPage - 1);
+      const endPage = Math.min(totalPages - 1, currentPage + 1);
+
+      for (let i = startPage; i <= endPage; i++) {
+        pagination.push(
+          <button
+            key={i}
+            onClick={() => changePage(i)}
+            className={`bg-F9F1E7 h-14 w-14 font-poppins font-normal text-xl rounded-lg mx-3 ${
+              currentPage === i ? "bg-Primary text-white" : ""
+            }`}
+          >
+            {i}
+          </button>
+        );
+      }
+
+      if (currentPage < totalPages - 2) {
+        pagination.push(
+          <span className="bg-F9F1E7 h-14 w-14 font-poppins font-normal text-xl rounded-lg mx-3 text-center pt-2">
+            ...
+          </span>
+        );
+      }
+
+      pagination.push(
+        <button
+          key={totalPages}
+          onClick={() => changePage(totalPages)}
+          className={`bg-F9F1E7 h-14 w-14 font-poppins font-normal text-xl rounded-lg mx-3 ${
+            currentPage === totalPages ? "bg-Primary text-white" : ""
+          }`}
+        >
+          {totalPages}
+        </button>
+      );
+    }
+
+    return pagination;
+  };
 
   return (
     <main className="container mx-auto">
@@ -108,9 +200,9 @@ const AllProducts = () => {
             className="text-center w-14 h-14 font-poppins font-normal text-xl text-9F9F9F focus:outline-none"
           >
             <option value={16}>16</option>
-            <option value={32}>32</option>
-            <option value={64}>64</option>
-            <option value={128}>128</option>
+            <option value={36}>36</option>
+            <option value={72}>72</option>
+            <option value={144}>144</option>
           </select>
           <select
             id="sortOptions"
@@ -136,7 +228,10 @@ const AllProducts = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {displayedProducts.length > 0 ? (
             displayedProducts.map((product) => (
-              <div key={product.id} className="bg-LightBG w-285px relative hover:scale-105 duration-300">
+              <div
+                key={product.id}
+                className="bg-LightBG w-285px relative hover:scale-105 duration-300"
+              >
                 <Link to={`/product/${product.id}`}>
                   {product.new && (
                     <div className="font-poppins font-medium text-base absolute rounded-full bg-GreenAccents text-white w-12 h-12 flex items-center justify-center mt-3 mr-3 right-0">
@@ -203,15 +298,14 @@ const AllProducts = () => {
                       <span>
                         Rp{" "}
                         {product.discount > 0
-                          ? (
-                              product.price *
-                              (1 - product.discount / 100)
-                            ).toFixed(2)
-                          : product.price}{" "}
+                          ? formatPrice(
+                              product.price * (1 - product.discount / 100)
+                            )
+                          : formatPrice(product.price)}{" "}
                       </span>
                       {product.discount > 0 && (
                         <span className="font-poppins font-normal text-base text-Gray4 line-through absolute left-40">
-                          Rp {product.price.toFixed(2)}
+                          {`Rp ${formatPrice(product.price)}`}
                         </span>
                       )}
                     </p>
@@ -228,17 +322,7 @@ const AllProducts = () => {
       </div>
       {totalPages > 1 && (
         <div className="flex justify-center mt-8">
-          {Array.from({ length: totalPages }, (_, index) => (
-            <button
-              key={index + 1}
-              onClick={() => setCurrentPage(index + 1)}
-              className={`bg-F9F1E7 h-14 w-14 font-poppins font-normal text-xl rounded-lg mx-3 ${
-                currentPage === index + 1 ? "bg-Primary text-white" : ""
-              }`}
-            >
-              {index + 1}
-            </button>
-          ))}
+          {renderPagination()}
           <button
             onClick={handleNextPage}
             disabled={currentPage === totalPages}

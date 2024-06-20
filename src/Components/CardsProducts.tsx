@@ -8,8 +8,16 @@ interface CardsProductsProps {
 
 const CardsProducts = ({ maxCards }: CardsProductsProps) => {
   const { products, loading, error } = useFetchProducts(
-    "https://run.mocky.io/v3/1f6dc9bd-04ac-46c0-be07-e62abee83b92"
+    "https://run.mocky.io/v3/013c64c0-9291-48dd-8454-5d354e4da6bf"
   );
+
+  const handleCardClick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat(undefined, { style: "decimal" }).format(price);
+  };
 
   if (loading) {
     return (
@@ -33,7 +41,10 @@ const CardsProducts = ({ maxCards }: CardsProductsProps) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {products.length > 0 ? (
             products.slice(0, maxCards).map((product) => (
-              <div key={product.id} className="bg-LightBG w-285px relative hover:scale-105 duration-300">
+              <div
+                key={product.id}
+                className="bg-LightBG w-285px relative hover:scale-105 duration-300"
+              >
                 <Link key={product.id} to={`/product/${product.id}`}>
                   <div>
                     {product.new && (
@@ -61,7 +72,10 @@ const CardsProducts = ({ maxCards }: CardsProductsProps) => {
                     </div>
                     <div className="absolute inset-0 flex justify-center items-center flex-col opacity-0 duration-300 transition-colors hover:bg-Gray1 hover:opacity-90">
                       <ButtonAddToCart product={product} />
-                      <div className="flex justify-center items-center mt-2">
+                      <div
+                        className="flex justify-center items-center mt-2"
+                        onClick={handleCardClick}
+                      >
                         <img
                           src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/icon-share.png"
                           alt="icon compare"
@@ -101,17 +115,16 @@ const CardsProducts = ({ maxCards }: CardsProductsProps) => {
                         <span>
                           Rp{" "}
                           {product.discount > 0
-                            ? (
-                                product.price *
-                                (1 - product.discount / 100)
-                              ).toFixed(2)
-                            : product.price}{" "}
+                            ? formatPrice(
+                                product.price * (1 - product.discount / 100)
+                              )
+                            : formatPrice(product.price)}{" "}
                         </span>
-                        <span className="font-poppins font-normal text-base text-Gray4 line-through absolute left-40">
-                          {product.discount > 0
-                            ? "Rp " + product.price.toFixed(2)
-                            : ""}
-                        </span>
+                        {product.discount > 0 && (
+                          <span className="font-poppins font-normal text-base text-Gray4 line-through absolute left-40">
+                            {`Rp ${formatPrice(product.price)}`}
+                          </span>
+                        )}
                       </p>
                     </div>
                   </div>
