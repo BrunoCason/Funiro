@@ -4,14 +4,23 @@ const images = [
   {
     src: "https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/image1-sec4.png",
     alt: "Imagem 1",
+    text1: "01",
+    text2: "Bed Room",
+    text3: "Inner Peace",
   },
   {
     src: "https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/image2-sec4.png",
     alt: "Imagem 2",
+    text1: "02",
+    text2: "Kitchen",
+    text3: "Inner Peace",
   },
   {
     src: "https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/image3-sec4.png",
     alt: "Imagem 3",
+    text1: "03",
+    text2: "Yard",
+    text3: "Inner Peace",
   },
 ];
 
