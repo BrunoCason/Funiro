@@ -56,33 +56,33 @@ const Footer = () => {
   return (
     <footer className="lg:grid lg:grid-cols-4 container mx-auto gap-10 border-t border-D9D9D9 mt-11 pt-6">
       <div className="text-center lg:text-left mt-5 lg:ml-10">
-        <p className="font-poppins font-bold text-2xl pb-4 lg:pb-14">Funiro.</p>
+        <p className="font-poppins font-bold text-2xl pb-4 lg:pb-14"><a href="/">Funiro.</a></p>
         <p className="font-poppins font-normal text-base text-9F9F9F pb-5 lg:pb-11">
           400 University Drive Suite 200 Coral Gables, <br /> FL 33134 USA
         </p>
         <div className="flex justify-center lg:-ml-5">
-          <a href="">
+          <a href="https://www.facebook.com" target="_blank">
             <img
               src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/icon-facebook.png"
               alt="icone facebook"
               className="hover:scale-110 duration-300"
             />
           </a>
-          <a href="">
+          <a href="https://www.instagram.com" target="_blank">
             <img
               src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/icon-instagram.png"
               alt="icone instagram"
               className="hover:scale-110 duration-300"
             />
           </a>
-          <a href="">
+          <a href="https://x.com" target="_blank">
             <img
               src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/icon-twitter.png"
               alt="icone twitter"
               className="hover:scale-110 duration-300"
             />
           </a>
-          <a href="">
+          <a href="https://www.linkedin.com" target="_blank">
             <img
               src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/icon-linkedin.png"
               alt="icone linkedin"
@@ -102,13 +102,13 @@ const Footer = () => {
                 <a href="/">Home</a>
               </li>
               <li className="pb-1 lg:pb-11">
-                <a href="">Shop</a>
+                <a href="/shop">Shop</a>
               </li>
               <li className="pb-1 lg:pb-11">
-                <a href="">About</a>
+                <a href="/*">About</a>
               </li>
               <li>
-                <a href="">Contact</a>
+                <a href="/contact">Contact</a>
               </li>
             </ul>
           </nav>
@@ -120,13 +120,13 @@ const Footer = () => {
           <nav>
             <ul className="font-poppins font-medium text-base">
               <li className="pb-1 lg:pb-11">
-                <a href="">Payment Options</a>
+                <a href="/*">Payment Options</a>
               </li>
               <li className="pb-1 lg:pb-11">
-                <a href="">Returns</a>
+                <a href="/*">Returns</a>
               </li>
               <li>
-                <a href="">Privacy Policies</a>
+                <a href="/*">Privacy Policies</a>
               </li>
             </ul>
           </nav>
