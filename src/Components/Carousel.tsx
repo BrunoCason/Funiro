@@ -38,7 +38,9 @@ const Carousel = ({ images }: ImageCarouselProps) => {
   };
 
   useEffect(() => {
-    const nextArrow = document.querySelector(".splide__arrow--next") as HTMLElement;
+    const nextArrow = document.querySelector(
+      ".splide__arrow--next"
+    ) as HTMLElement;
 
     if (nextArrow) {
       nextArrow.style.width = "40px";
@@ -53,8 +55,6 @@ const Carousel = ({ images }: ImageCarouselProps) => {
       leftArrow.remove();
     }
   }, []);
-
-  
 
   return (
     <Splide options={options}>
@@ -81,11 +81,13 @@ const Carousel = ({ images }: ImageCarouselProps) => {
                   {image.text3}
                 </p>
               </div>
-              <img
-                src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/arrow-carrousel.png"
-                alt="icon arrow"
-                className="mt-20"
-              />
+              <a href="/shop">
+                <img
+                  src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/arrow-carrousel.png"
+                  alt="icon arrow"
+                  className="mt-20"
+                />
+              </a>
             </div>
           </div>
         </SplideSlide>

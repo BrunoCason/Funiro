@@ -41,7 +41,7 @@ const Sec4Beautiful = () => {
             href="/"
             className="bg-Primary font-poppins font-semibold text-white py-3 px-9 inline-block hover:bg-Primary2 duration-300"
           >
-            Explore More
+            <a href="/shop">Explore More</a>
           </a>
         </div>
         <div className="flex-1 px-4 md:px-9 lg:px-0">

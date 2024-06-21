@@ -90,7 +90,7 @@ const SingleProduct = () => {
 
   // formata o price
   const formatPrice = (price: number) => {
-    return new Intl.NumberFormat(undefined, { style: 'decimal' }).format(price);
+    return new Intl.NumberFormat(undefined, { style: "decimal" }).format(price);
   };
 
   if (loading) {
@@ -171,8 +171,18 @@ const SingleProduct = () => {
           <h2 className="font-poppins font-normal text-4.5xl text-black pt-2 pb-2">
             {product.product_name}
           </h2>
-          <p className="font-poppins font-medium text-2xl text-9F9F9F pb-4">
-            Rs. <span>{formatPrice(product.price)}</span>
+          <p className="font-poppins font-medium text-9F9F9F text-2xl pt-2 pb-7">
+            <span>
+              Rs.{" "}
+              {product.discount > 0
+                ? formatPrice(product.price * (1 - product.discount / 100))
+                : formatPrice(product.price)}{" "}
+            </span>
+            {product.discount > 0 && (
+              <span className="font-poppins font-normal text-base text-Gray4 line-through">
+                {`Rs. ${formatPrice(product.price)}`}
+              </span>
+            )}
           </p>
           <div className="flex justify-center lg:justify-normal">
             {product.recommendation_stars.slice(0).map((image, index) => (
