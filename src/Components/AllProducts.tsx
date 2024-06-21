@@ -9,9 +9,11 @@ const AllProducts = () => {
   const [shortBy, setShortBy] = useState<"price_inc" | "price_desc" | "">("");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const { products, loading, error } = useFetchProducts(
+    // utiliza o hooke useFetchProducts para buscar os produtos no mocky
     "https://run.mocky.io/v3/013c64c0-9291-48dd-8454-5d354e4da6bf"
   );
 
+  // atualiza o quantidade de cards exibidos na tela
   const handleMaxCardsChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
@@ -19,22 +21,26 @@ const AllProducts = () => {
     setCurrentPage(1);
   };
 
+  // atualiza o estado de busca conforme digita
   const handleSearchInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setSearchQuery(event.target.value);
   };
 
+  // filtro de ordenação
   const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setShortBy(event.target.value as "price_inc" | "price_desc" | "");
   };
 
+  // filtro de pesquisa pelo nome e mensagem do card
   const filteredProducts = products.filter(
     (product) =>
       product.product_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       product.message_card.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  // ordena os produtos
   const sortedProducts = [...filteredProducts];
   if (shortBy === "price_inc") {
     sortedProducts.sort((a, b) => a.price - b.price);
@@ -42,13 +48,16 @@ const AllProducts = () => {
     sortedProducts.sort((a, b) => b.price - a.price);
   }
 
+  // total de produtos e o numero total de paginas
   const totalProducts = sortedProducts.length;
   const totalPages = Math.ceil(totalProducts / maxCards);
 
+  // formata o preço
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat(undefined, { style: "decimal" }).format(price);
   };
 
+  // função para avançar a pagina 
   const handleNextPage = () => {
     setCurrentPage((prevPage) => {
       const newPage = Math.min(prevPage + 1, totalPages);
@@ -57,12 +66,15 @@ const AllProducts = () => {
     });
   };
 
+  // função para mudar para uma pagina específica
   const changePage = (page: number) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  // indice inicial dos produtos exibidos
   const startIndex = (currentPage - 1) * maxCards;
+  // exibição dos produtos na tela
   const displayedProducts = sortedProducts.slice(
     startIndex,
     startIndex + maxCards
@@ -84,9 +96,11 @@ const AllProducts = () => {
     );
   }
 
+  // renderizar as paginas
   const renderPagination = () => {
     const pagination = [];
 
+    // se o total de paginas for menor que 5, exibe todas
     if (totalPages <= 5) {
       for (let i = 1; i <= totalPages; i++) {
         pagination.push(
@@ -101,6 +115,7 @@ const AllProducts = () => {
           </button>
         );
       }
+    // exibe a primeira página
     } else {
       pagination.push(
         <button
@@ -114,6 +129,7 @@ const AllProducts = () => {
         </button>
       );
 
+      // se passar da terceira pagina exibe o ...
       if (currentPage > 3) {
         pagination.push(
           <span className="bg-F9F1E7 h-14 w-14 font-poppins font-normal text-xl rounded-lg mx-3 text-center pt-2">
@@ -122,6 +138,7 @@ const AllProducts = () => {
         );
       }
 
+       // exibe paginas entre currentPage - 1 e currentPage + 1
       const startPage = Math.max(2, currentPage - 1);
       const endPage = Math.min(totalPages - 1, currentPage + 1);
 
@@ -147,6 +164,7 @@ const AllProducts = () => {
         );
       }
 
+      // exibe a uktima pagina
       pagination.push(
         <button
           key={totalPages}

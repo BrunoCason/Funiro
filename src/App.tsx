@@ -25,6 +25,8 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
   const isLoginRoute = location.pathname === "/login";
 
   return (
+    // renderiza o conteudo da rota atual
+    // se estiver na login, header e nem o footer aparece
     <div>
       {!isLoginRoute && <Header />}
       {children}
@@ -37,6 +39,7 @@ function App() {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
+  // fefine o usuario autenticado quando o estado de autenticação muda
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       setUser(authUser);
@@ -45,11 +48,13 @@ function App() {
     return () => unsubscribe();
   }, []);
 
+  // verifica se o usuario está autenticado antes de renderizar
   const PrivateRoute = () => {
     if (loading) return null;
     return user ? <Outlet /> : <Navigate to="/login" replace />;
   };
 
+  // não permite que o usuario acesse a rota /login se ja estiver autenticado
   const AuthRoute = ({ children }: { children: React.ReactNode }) => {
     if (loading) return null;
     return user ? <Navigate to="/" replace /> : <>{children}</>;

@@ -5,6 +5,7 @@ const CartProducts = () => {
   const { cartItems, calculateTotal, calculateSubtotal, handleRemoveItem } =
     useCart();
 
+    // formata o preço
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat(undefined, { style: "decimal" }).format(price);
   };

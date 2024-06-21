@@ -9,8 +9,10 @@ type CartModalProps = {
 const CartModal = ({ isOpen, onClose }: CartModalProps) => {
   const { cartItems, calculateTotal, handleRemoveItem, handleClearCart } = useCart();
 
+  // não aparece na tela se estiver null
   if (!isOpen) return null;
 
+  // formata o preço
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat(undefined, { style: 'decimal' }).format(price);
   };

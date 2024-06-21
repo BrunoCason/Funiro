@@ -7,14 +7,17 @@ interface CardsProductsProps {
 }
 
 const CardsProducts = ({ maxCards }: CardsProductsProps) => {
+  // utiliza o hooke useFetchProducts para buscar os produtos no mocky
   const { products, loading, error } = useFetchProducts(
     "https://run.mocky.io/v3/013c64c0-9291-48dd-8454-5d354e4da6bf"
   );
 
+  // voltar ao inicio da pagina quando clicar no card
   const handleCardClick = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  // formata o preço
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat(undefined, { style: "decimal" }).format(price);
   };

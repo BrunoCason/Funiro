@@ -11,6 +11,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // autenticação com google
   const handleGoogleLogin = async () => {
     try {
       const result = await signInWithGoogle();
@@ -21,6 +22,7 @@ const Login = () => {
     }
   };
 
+  // autenticação com facebook
   const handleFacebookLogin = async () => {
     try {
       const result = await signInWithFacebook();
@@ -31,6 +33,7 @@ const Login = () => {
     }
   };
 
+  // autenticação com email e senha cadastrados no console firebase
   const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {

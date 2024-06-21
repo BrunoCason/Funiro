@@ -19,6 +19,7 @@ const SingleProduct = () => {
   const [addToCartEnabled, setAddToCartEnabled] = useState<boolean>(false);
   const [cartMessage, setCartMessage] = useState<string>("");
 
+  // busca o produto com base no id ao clicar no card
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -47,12 +48,14 @@ const SingleProduct = () => {
     fetchProduct();
   }, [id]);
 
+  // altera o titulo da pagina para o nome do atual produto
   useEffect(() => {
     if (product !== null) {
       document.title = product.product_name;
     }
   }, [product]);
 
+  // função para verificar se a color e size foi selecionado antes de permitir adicionar ao carrinho
   const checkAddToCartEnabled = (color: string, size: string) => {
     if (color !== "" && size !== "") {
       setAddToCartEnabled(true);
@@ -61,26 +64,31 @@ const SingleProduct = () => {
     }
   };
 
+  // mudança da color
   const handleColorChange = (color: string) => {
     setSelectedColor(color);
     checkAddToCartEnabled(color, selectedSize);
   };
 
+  // mudança do size
   const handleSizeChange = (size: string) => {
     setSelectedSize(size);
     checkAddToCartEnabled(selectedColor, size);
   };
 
+  // incrementa 1 no input
   const handleIncrease = () => {
     setQuantity(quantity + 1);
   };
 
+  // dedcrementa 1 no input
   const handleDecrease = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
     }
   };
 
+  // formata o price
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat(undefined, { style: 'decimal' }).format(price);
   };
@@ -109,6 +117,7 @@ const SingleProduct = () => {
     );
   }
 
+  // função para adicionar no carrinho
   const handleAddToCart = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     product: Product
@@ -126,7 +135,7 @@ const SingleProduct = () => {
         name: product.product_name,
         price: product.price,
         image: image,
-        quantity: quantity,
+        quantity: quantity, // o quantity é o atual valor do input
       })
     );
     setQuantity(1);

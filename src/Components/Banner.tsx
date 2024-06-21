@@ -2,8 +2,10 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 const Banner = () => {
+  // usa a localização atual da pagina
   const location = useLocation();
 
+  // obtem o nome da pagina com base na rota
   const getPageName = (path: string): string => {
     switch (path) {
       case "/":
@@ -23,6 +25,7 @@ const Banner = () => {
     }
   };
 
+  // atualiza o nome da pagina
   useEffect(() => {
     document.title = getPageName(location.pathname);
   }, [location.pathname]);

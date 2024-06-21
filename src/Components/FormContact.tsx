@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { z } from "zod";
 
+// validação do form
 const createUserFormSchema = z.object({
   name: z
     .string()
@@ -49,6 +50,7 @@ const listItems: Icons[] = [
 ];
 
 const FormContact = () => {
+  // armazena os dados do formulário
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -59,6 +61,7 @@ const FormContact = () => {
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [successMessage, setSuccessMessage] = useState("");
 
+  // atualiza e limpa os campos do form
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -70,12 +73,14 @@ const FormContact = () => {
     }
   };
 
+  // envio do form
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // valida os dados
     const validationResult = createUserFormSchema.safeParse(formData);
 
     if (validationResult.success) {
-      setFormData({
+      setFormData({ // limpa os campos
         name: "",
         email: "",
         subject: "",
@@ -83,6 +88,7 @@ const FormContact = () => {
       });
       setSuccessMessage("Message sent!");
     } else {
+      // atualiza o estado de erros
       const newErrors: { [key: string]: string } = {};
       validationResult.error.issues.forEach((issue) => {
         newErrors[issue.path[0]] = issue.message;

@@ -10,6 +10,7 @@ interface ButtonAddToCartProps {
 const ButtonAddToCart = ({ product }: ButtonAddToCartProps) => {
   const dispatch = useDispatch();
 
+  // função para adicionar no carrinho
   const handleAddToCart = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {

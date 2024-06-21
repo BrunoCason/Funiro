@@ -1,3 +1,4 @@
+// configurações do firebase
 const firebaseConfig = {
   apiKey: "AIzaSyDJCV53GrqX0grQYkCApE-vZZfxUcIEPno",
   authDomain: "desafio03-compass.firebaseapp.com",

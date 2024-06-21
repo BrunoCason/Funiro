@@ -8,12 +8,14 @@ interface FetchProductsResult {
   error: string | null;
 }
 
+// busca o produto com a url
 export const useFetchProducts = (url: string): FetchProductsResult => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    // função assincrona para buscar os produtos da API
     const fetchProducts = async () => {
       try {
         const response = await axios.get(url);

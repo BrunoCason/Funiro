@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { z } from "zod";
 
+// validação do form
 const createUserFormSchema = z.object({
   email: z
     .string()
@@ -15,6 +16,7 @@ const Footer = () => {
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [successMessage, setSuccessMessage] = useState("");
 
+  // atualiza e limpa o campo
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -26,19 +28,23 @@ const Footer = () => {
     }
   };
 
+  // envio do form
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     const validationResult = createUserFormSchema.safeParse(formData);
 
     if (validationResult.success) {
+      // limpa o campo de o email estiver certo
       setFormData({
         email: "",
       });
+      // exibe a mensagem por 3 segundos
       setSuccessMessage("Subscribed e-mail!");
       setTimeout(() => {
         setSuccessMessage("");
       }, 3000);
     } else {
+      // aparece o erro se email estiver errado
       const newErrors: { [key: string]: string } = {};
       validationResult.error.issues.forEach((issue) => {
         newErrors[issue.path[0] as string] = issue.message;

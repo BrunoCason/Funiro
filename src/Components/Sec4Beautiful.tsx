@@ -28,7 +28,7 @@ const Sec4Beautiful = () => {
   return (
     <main className="container mx-auto bg-FCF8F3 mt-16">
       <div className="text-center md:text-start md:flex items-center">
-        <div className="flex-1 ml-12 lg:ml-24 md:max-w-md">
+        <div className="flex-1 mx-5 md:mx-0 md:ml-12 lg:ml-24 md:max-w-md">
           {" "}
           <h2 className="font-poppins font-bold text-Gray1 text-4.5xl pt-10 md:pt-0">
             50 + Beautiful rooms <br /> inspiration
@@ -44,7 +44,7 @@ const Sec4Beautiful = () => {
             Explore More
           </a>
         </div>
-        <div className="flex-1 px-9 lg:px-0">
+        <div className="flex-1 px-4 md:px-9 lg:px-0">
           <Carousel images={images} />
         </div>
       </div>

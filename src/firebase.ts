@@ -1,4 +1,3 @@
-// src/firebase.ts
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup, signInWithEmailAndPassword  } from "firebase/auth";
 import firebaseConfig from "./services/firebaseConfig"

@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useCart } from "../Hooks/useCart";
 
+// validação do form
 const createUserFormSchema = z.object({
   firstName: z
     .string()
@@ -25,6 +26,7 @@ const createUserFormSchema = z.object({
 });
 
 const FormCheckout = () => {
+  // armazena os dados do formulário
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -43,6 +45,7 @@ const FormCheckout = () => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const { cartItems, calculateTotal, calculateSubtotal } = useCart();
 
+  // atualiza e limpa os campos do form
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -54,6 +57,7 @@ const FormCheckout = () => {
     }
   };
 
+  // busca os zip code na api
   const fetchAddress = async (zipCode: string) => {
     try {
       const response = await axios.get(
@@ -61,6 +65,7 @@ const FormCheckout = () => {
       );
       const { logradouro, additionalInformation, bairro, localidade, uf } =
         response.data;
+      // atualiza o form com os dados obtidos
       setFormData((prevData) => ({
         ...prevData,
         streetAddress: `${logradouro}, ${bairro}`,
@@ -79,15 +84,18 @@ const FormCheckout = () => {
     }
   };
 
+  // formata o zip code
   useEffect(() => {
     if (/^\d{5}-?\d{3}$/.test(formData.zipCode)) {
       fetchAddress(formData.zipCode);
     }
   }, [formData.zipCode]);
 
+  // validar form
   const handleValidate = () => {
     const validationResult = createUserFormSchema.safeParse(formData);
 
+    // limpa os erros se tiver
     if (validationResult.success) {
       setFormData({
         firstName: "",
@@ -103,6 +111,7 @@ const FormCheckout = () => {
         emailAddress: "",
       });
     } else {
+      // exibe os erros
       const newErrors: { [key: string]: string } = {};
       validationResult.error.issues.forEach((issue) => {
         newErrors[issue.path[0]] = issue.message;
@@ -111,6 +120,7 @@ const FormCheckout = () => {
     }
   };
 
+  // formata o preço
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat(undefined, { style: 'decimal' }).format(price);
   };

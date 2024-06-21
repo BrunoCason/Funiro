@@ -57,6 +57,7 @@ const Header = () => {
     return () => unsubscribe();
   }, []);
 
+  // renderiza a imagem do usuario com base no metodo de autenticação
   const renderUserIcon = () => {
     if (user && user.photoURL) {
       return (
@@ -80,6 +81,7 @@ const Header = () => {
     }
   };
 
+  // logout do usuário
   const handleLogout = async () => {
     try {
       await signOut(auth);
