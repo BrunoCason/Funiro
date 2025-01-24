@@ -1,5 +1,4 @@
 <p align="center">
-  <img src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/logo-header.svg" alt="logo" width="200">
   <h1 align="center">Funiro</h1>
 </p>
 
@@ -18,15 +17,6 @@ O Funiro é um projeto de desenvolvimento de um site para uma loja fictícia de 
 - `Responsividade`: Garantia de que o site seja totalmente responsivo, adaptando-se de forma adequada a dispositivos móveis, tablets e desktops.
 - `API de Produtos`: Utilização de uma API RESTful para gerenciar e disponibilizar os dados dos móveis, garantindo integridade e segurança na manipulação dos dados.
 - `Imagens`: Todas as imagens utilizadas no projeto estão armazenadas no AWS S3 para garantir disponibilidade e desempenho adequados.
-
-<p align="center">
-  <img src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/print1.png" width="200" height="110" />
-  <img src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/print2.png" width="200" height="110" />
-  <img src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/print3.png" width="200" height="110" />
-  <img src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/print4.png" width="200" height="110" />
-  <img src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/print5.png" width="200" height="110" />
-  <img src="https://desafio-03-compass-uol.s3.us-east-2.amazonaws.com/static-images/print6.png" width="200" height="110" />
-</p>
 
 # Como instalar
 
